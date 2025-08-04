@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <!-- Existing Fonts -->
+        <item>@font/adamina</item>
+        <item>@font/baloo_2</item>
+        <item>@font/domine</item>
+        <item>@font/lugrasimo</item>
+        <item>@font/mukta_extralight</item>
+        <item>@font/poppins</item>
+
+    </array>
+</resources>

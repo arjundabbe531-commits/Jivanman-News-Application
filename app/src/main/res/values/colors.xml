@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base Colors -->
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="green">#09F213</color>
+    <color name="red">#F00723</color>
+    <color name="yellow">#FFC000</color>
+    <color name="orange">#FF6F00</color>
+    <color name="safroon">#DD7612</color>
+
+    <!-- Brand and Theme Colors -->
+    <color name="my_primary">#ED835A</color>
+    <color name="my_secoundary">#EAF0FF</color>
+    <color name="splash_bg">#EAF0FF</color>
+
+    <!-- Accent / Supportive Colors -->
+    <color name="lightorange">#876750</color>
+    <color name="lightblue">#3D3489</color>
+    <color name="purple">#800080</color>
+    <color name="purple_700">#3700B3</color>
+
+    <!-- Backgrounds & Neutrals -->
+    <color name="appBackground">#C1D7E1</color>
+    <color name="gray_light">#F5F5F5</color>
+    <color name="gray_dark">#808080</color>
+
+    <!-- Text Colors -->
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+
+    <!-- Status / Utility -->
+    <color name="success">#4CAF50</color>
+    <color name="error">#D32F2F</color>
+    <color name="info">#2196F3</color>
+    <color name="warning">#FFC107</color>
+</resources>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_bg"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:id="@+id/tvLogoutTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="लॉगआउट"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:layout_marginBottom="6dp" />
+
+    <TextView
+        android:id="@+id/tvLogoutMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="तुम्हाला खात्री आहे का की तुम्ही लॉगआउट करू इच्छिता?"
+        android:textSize="16sp"
+        android:textColor="#444444"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:layout_marginBottom="20dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="नाही"
+            android:textAllCaps="false"
+            android:textColor="#000000"
+            android:backgroundTint="#ECEFF1"
+            android:layout_marginEnd="8dp" />
+
+        <Button
+            android:id="@+id/btnConfirm"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="हो"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#D32F2F" />
+    </LinearLayout>
+</LinearLayout>

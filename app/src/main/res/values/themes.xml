@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Base.Theme.Jivanman" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="colorPrimaryVariant">@color/appBackground</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Base.Theme.Drawer.Navigation" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="ShowActionBar" parent="Theme.Material3.DayNight" />
+
+    <style name="Theme.Jivanman" parent="Theme.Material3.DayNight.NoActionBar" />
+
+    <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/yellow</item>
+    </style>
+
+    <style name="CircleImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+
+</resources>

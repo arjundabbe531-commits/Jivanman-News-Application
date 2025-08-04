@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "709355471242",
+    "project_id": "jivanman",
+    "storage_bucket": "jivanman.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:709355471242:android:f31f0d0976cba570050873",
+        "android_client_info": {
+          "package_name": "com.arjundabbe.jivanman"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsUXcVMLFarqb5V-yU3P-s4UMHibQ-pRw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

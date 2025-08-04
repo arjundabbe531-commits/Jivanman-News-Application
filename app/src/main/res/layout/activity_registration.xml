@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EAF0FF"
+    tools:context=".ui.LoginActivity">
+
+    <LinearLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="24dp">
+
+        <!-- Logo -->
+        <ImageView
+            android:id="@+id/ivRegistrationLogo"
+            android:layout_width="220dp"
+            android:layout_height="170dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/leady_reading_newspaper"
+            android:contentDescription="Logo" />
+
+        <!-- Title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="नवीन नोंदणी!"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/baloo_2"
+            android:textColor="@color/black"
+            android:layout_marginTop="16dp"
+            android:gravity="center" />
+
+        <!-- Name -->
+        <EditText
+            android:id="@+id/etRegistrationUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="पूर्ण नाव"
+            android:inputType="textPersonName"
+            android:drawableStart="@drawable/baseline_person_24"
+            android:drawablePadding="12dp"
+            android:padding="12dp"
+            android:background="@drawable/rounded_edittext"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
+
+        <!-- Mobile -->
+        <EditText
+            android:id="@+id/etRegistrationMobileNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="मोबाईल क्रमांक"
+            android:inputType="phone"
+            android:drawableStart="@drawable/baseline_phone_android_24"
+            android:drawablePadding="12dp"
+            android:padding="12dp"
+            android:background="@drawable/rounded_edittext"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
+
+        <!-- Email -->
+        <EditText
+            android:id="@+id/etRegistrationEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="इमेल"
+            android:inputType="textEmailAddress"
+            android:drawableStart="@drawable/baseline_email_24"
+            android:drawablePadding="12dp"
+            android:padding="12dp"
+            android:background="@drawable/rounded_edittext"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
+
+        <!-- Password -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+
+            <EditText
+                android:id="@+id/etRegistrationPassword1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="पासवर्ड"
+                android:inputType="textPassword"
+                android:padding="12dp"
+                android:drawableStart="@drawable/lock_black"
+                android:drawablePadding="12dp"
+                android:background="@drawable/rounded_edittext"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black" />
+
+            <ImageView
+                android:id="@+id/ivToggleRegistrationPassword1"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/baseline_remove_red_eye_24"
+                android:contentDescription="Toggle Password Visibility" />
+        </RelativeLayout>
+
+        <!-- Confirm Password -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+
+            <EditText
+                android:id="@+id/etRegistrationPassword2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="पासवर्ड पुन्हा लिहा"
+                android:inputType="textPassword"
+                android:padding="12dp"
+                android:drawableStart="@drawable/lock_black"
+                android:drawablePadding="12dp"
+                android:background="@drawable/rounded_edittext"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black" />
+
+            <ImageView
+                android:id="@+id/ivToggleRegistrationPassword2"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/baseline_remove_red_eye_24"
+                android:contentDescription="Toggle Confirm Password Visibility" />
+        </RelativeLayout>
+
+
+        <!-- Role Selection -->
+        <RadioGroup
+            android:id="@+id/rgRoles"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+
+
+            <RadioButton
+                android:id="@+id/rbReader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="वाचक"
+                android:buttonTint="@color/my_primary"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:padding="8dp"/>
+
+            <RadioButton
+                android:id="@+id/rbJournalist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="पत्रकार"
+                android:buttonTint="@color/my_primary"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:padding="8dp"/>
+        </RadioGroup>
+
+        <!-- Register Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnRegistrationRegistration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="12dp"
+            android:backgroundTint="@color/my_primary"
+            android:text="नोंदणी करा"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:cornerRadius="12dp"
+            android:fontFamily="@font/mukta_extralight"
+            android:elevation="4dp" />
+
+        <!-- Login Link -->
+        <TextView
+            android:id="@+id/tvRegistrationLoginNow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="आधीपासूनच खातं आहे? लॅगिन करा"
+            android:textSize="16sp"
+            android:textColor="@color/lightblue"
+            android:layout_marginTop="8dp"
+            android:gravity="center" />
+    </LinearLayout>
+</ScrollView>

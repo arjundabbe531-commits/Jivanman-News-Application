@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/bottom_Nav_Home"
+        android:icon="@drawable/baseline_home_24"
+        android:title="होम"/>
+    <item
+        android:id="@+id/bottom_Nav_saved"
+        android:icon="@drawable/baseline_bookmark_24"
+        android:title="सेव्हड"/>
+    <item
+        android:id="@+id/bottom_Nav_Epaper"
+        android:icon="@drawable/baseline_newspaper_24"
+        android:title="ई-पेपर"/>
+    <item
+        android:id="@+id/bottom_Nav_Search"
+        android:icon="@drawable/baseline_search_24"
+        android:title="शोधा"
+        />
+
+
+
+</menu>

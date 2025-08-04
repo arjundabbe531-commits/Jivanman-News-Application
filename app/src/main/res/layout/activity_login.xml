@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/my_secoundary"
+    tools:context=".ui.LoginActivity">
+
+    <LinearLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="24dp">
+
+        <!-- Logo -->
+        <ImageView
+            android:id="@+id/ivLoginLogo"
+            android:layout_width="220dp"
+            android:layout_height="170dp"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/reading_person1"
+            android:contentDescription="App Logo" />
+
+        <!-- Title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="लॉग इन करा!"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/baloo_2"
+            android:gravity="center" />
+
+        <!-- Subtitle -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="तुमच्या रजिस्टर्ड ईमेल आयडीचा वापर करून लॉग-इन करा"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:fontFamily="@font/domine" />
+
+        <!-- Email Field -->
+        <EditText
+            android:id="@+id/etLoginUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:hint="इमेल"
+            android:inputType="textEmailAddress"
+            android:drawableStart="@drawable/baseline_person_24"
+            android:drawablePadding="12dp"
+            android:padding="12dp"
+            android:background="@drawable/rounded_edittext"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
+
+        <!-- Password Field -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp">
+
+            <EditText
+                android:id="@+id/etLoginPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="पासवर्ड"
+                android:inputType="textPassword"
+                android:drawableStart="@drawable/lock_black"
+                android:drawablePadding="12dp"
+                android:padding="12dp"
+                android:background="@drawable/rounded_edittext"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black" />
+
+            <ImageView
+                android:id="@+id/ivTogglePassword"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/baseline_remove_red_eye_24"
+                android:contentDescription="Toggle Password Visibility" />
+        </RelativeLayout>
+
+        <!-- Forgot Password -->
+        <TextView
+            android:id="@+id/tvLoginForgetPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="पासवर्ड विसरलात?"
+            android:textColor="@color/lightblue"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"
+            android:layout_gravity="end" />
+
+        <!-- Login Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLoginLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="12dp"
+            android:text="लॉगिन"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:cornerRadius="12dp"
+            android:backgroundTint="@color/my_primary"
+            android:fontFamily="@font/mukta_extralight"
+            android:elevation="4dp" />
+
+        <!-- Register Link -->
+        <TextView
+            android:id="@+id/tvLoginRegisterNow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="नवीन वापरकर्ता? नोंदणी करा"
+            android:textColor="@color/lightblue"
+            android:textSize="18sp"
+            android:layout_marginTop="4dp"
+            android:gravity="center" />
+
+        <!-- OR -->
+        <TextView
+            android:id="@+id/tvLoginNewUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="किंवा"
+            android:textColor="#332D2D"
+            android:textSize="16sp"
+            android:layout_marginTop="16dp"
+            android:gravity="center" />
+
+        <!-- Social Logins -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:id="@+id/iv_google_logo"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/google_icons"
+                android:layout_margin="8dp"
+                android:contentDescription="Google Login"
+                android:focusable="true"
+                android:clickable="true"/>
+
+            <ImageView
+                android:id="@+id/iv_facebook_logo"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/facebook_icon2"
+                android:layout_margin="8dp"
+                android:contentDescription="Facebook Login" />
+
+            <ImageView
+                android:id="@+id/iv_linkedln_logo"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/linkedin_icon"
+                android:layout_margin="8dp"
+                android:contentDescription="LinkedIn Login"
+                android:focusable="true"
+                android:clickable="true" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

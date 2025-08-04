@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/appBackground"
+    android:fillViewport="true"
+    android:paddingTop="32dp"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.IdCardActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+
+        android:gravity="center_horizontal">
+
+        <!-- ID Card Container -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:gravity="center_horizontal"
+            android:layout_margin="8dp"
+            android:elevation="4dp"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/white"
+            android:clipToPadding="false"
+            android:clipChildren="false"
+            android:background="@drawable/bg_card_rounded">
+
+            <!-- Header Banner -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="@drawable/bg_header_curved"
+                android:layout_marginBottom="16dp"
+                android:elevation="4dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="ओळखपत्र"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="20sp" />
+            </FrameLayout>
+
+
+            <!-- Profile Image -->
+            <ImageView
+                android:id="@+id/ivIdProfile"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="centerCrop"
+                android:clipToOutline="true"
+                android:src="@drawable/baseline_person_24"
+                android:background="@drawable/circle_white_bg"
+                android:outlineProvider="background"
+                android:contentDescription="Profile photo"/>
+
+            <!-- Name -->
+            <TextView
+                android:id="@+id/tvMyCodeName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="~ अर्जुन शंकर डब्बे"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="2dp"/>
+
+            <!-- Role -->
+            <TextView
+                android:id="@+id/tvRole"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="पत्रकार"
+                android:textSize="16sp"
+                android:textColor="@color/purple"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Divider -->
+            <View
+                android:layout_width="120dp"
+                android:layout_height="1dp"
+                android:background="@color/lightorange"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Contact Info -->
+            <TextView
+                android:id="@+id/tvJivanmanId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ID: JIV2025M001"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:id="@+id/tvMobile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="फोन: +९१-९८७६५४३२१०"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:id="@+id/tvEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ईमेल: arjun@example.com"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:layout_marginBottom="16dp" />
+
+            <!-- QR Label -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="QR कोड"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="@color/my_primary"
+                android:layout_marginBottom="8dp" />
+
+            <!-- QR Image -->
+            <ImageView
+                android:id="@+id/ivQRCode"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:layout_marginBottom="12dp"
+                android:contentDescription="User QR Code"
+                android:scaleType="fitCenter" />
+
+            <!-- Note -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="हा QR कोड खासगी आहे.\nफक्त विश्वासार्ह लोकांसह शेअर करा."
+                android:textSize="12sp"
+                android:textColor="@color/red"
+                android:gravity="center"
+                android:lineSpacingExtra="4dp"
+                android:layout_marginBottom="8dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

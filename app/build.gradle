@@ -1,0 +1,81 @@
+// Apply essential Gradle plugins
+plugins {
+    alias(libs.plugins.android.application) // Android app plugin
+    alias(libs.plugins.google.android.libraries.mapsplatform.secrets.gradle.plugin) // API key handling
+    alias(libs.plugins.google.gms.google.services) // Google/Firebase services
+}
+
+android {
+    namespace 'com.arjundabbe.jivanman' // Unique app package name
+    compileSdk 35 // Android SDK to compile with
+
+    defaultConfig {
+        applicationId "com.arjundabbe.jivanman" // App ID
+        minSdk 24 // Minimum Android version
+        targetSdk 35 // Target Android version
+        versionCode 1 // Internal version
+        versionName "1.0" // Display version
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner" // Test runner
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false // Disable code shrinking
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro' // ProGuard rules
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11 // Java 11 source
+        targetCompatibility JavaVersion.VERSION_11 // Java 11 target
+    }
+
+    buildFeatures {
+        viewBinding true // Enable ViewBinding
+    }
+}
+
+dependencies {
+    // Core Android libraries
+    implementation libs.appcompat // Backward compatibility
+    implementation libs.material // Material Design
+    implementation libs.activity // Activity support
+    implementation libs.constraintlayout // Constraint layout
+
+    // Google & Firebase services
+    implementation libs.play.services.maps // Google Maps SDK
+    implementation libs.firebase.messaging // Firebase messaging
+
+    // Media & Navigation
+    implementation libs.mediarouter // Media control
+    implementation libs.navigation.fragment // Jetpack Navigation
+
+    // Testing
+    testImplementation libs.junit // Unit testing
+    androidTestImplementation libs.ext.junit // Android test extension
+    androidTestImplementation libs.espresso.core // UI testing (Espresso)
+
+    // UI Components
+    implementation 'androidx.cardview:cardview:1.0.0' // Card views
+    implementation 'com.google.android.material:material:1.11.0' // Material Design UI
+    implementation 'com.github.denzcoskun:ImageSlideshow:0.1.2' // Image slider
+
+    // Networking
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0' // Retrofit (HTTP client)
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0' // JSON converter
+
+    // ViewPager2
+    implementation 'androidx.viewpager2:viewpager2:1.0.0' // Swipable pages
+
+    // QR Code Scanner
+    implementation 'com.journeyapps:zxing-android-embedded:4.3.0' // QR code scanning
+
+    // Image Cropper
+    implementation 'com.github.CanHub:Android-Image-Cropper:4.3.2' // Image cropping
+
+    // Image Loading
+    implementation 'com.github.bumptech.glide:glide:4.16.0' // Image loader
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0' // Glide compiler
+
+    implementation 'com.github.KwabenBerko:News-API-Java:1.0.2'
+}

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/appBackground"
+    tools:context=".ui.fragments.MyCodeFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:gravity="center_horizontal">
+
+        <!-- ID Card Container -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:gravity="center_horizontal"
+            android:layout_margin="8dp"
+            android:elevation="4dp"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/white"
+            android:clipToPadding="false"
+            android:clipChildren="false"
+            android:background="@drawable/bg_card_rounded">
+
+            <!-- Header -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="QR कोड"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="@color/my_primary"
+                android:layout_marginBottom="8dp" />
+
+            <!-- QR Image -->
+            <ImageView
+                android:id="@+id/ivQRCode"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:layout_marginBottom="12dp"
+                android:contentDescription="User QR Code"
+                android:scaleType="fitCenter" />
+            <!-- Barcode Image -->
+
+
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
