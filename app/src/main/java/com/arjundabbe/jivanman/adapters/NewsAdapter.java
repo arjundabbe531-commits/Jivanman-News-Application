@@ -1,6 +1,7 @@
 package com.arjundabbe.jivanman.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.arjundabbe.jivanman.R;
 import com.arjundabbe.jivanman.models.NewsArticle;
+import com.arjundabbe.jivanman.ui.NewsDetailActivity;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
@@ -57,8 +59,14 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
             holder.image.setImageResource(R.drawable.placeholder);
         }
 
-
-
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, NewsDetailActivity.class);
+            intent.putExtra("title", article.getTitle());
+            intent.putExtra("description", article.getDescription());
+            intent.putExtra("imageUrl", article.getImageUrl());
+            intent.putExtra("date", article.getDateTime());
+            context.startActivity(intent);
+        });
 
 
 

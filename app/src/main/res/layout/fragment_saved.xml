@@ -5,11 +5,9 @@
     android:padding="16dp"
     android:background="@color/white">
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewSaved"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="8dp"/>
-
-</LinearLayout>
+<androidx.recyclerview.widget.RecyclerView
+android:id="@+id/recyclerViewSaved"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:padding="8dp" />
+    </LinearLayout>
