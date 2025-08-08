@@ -1,65 +1,77 @@
 package com.arjundabbe.jivanman.ui;
 
-import android.content.Intent;
+import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.provider.MediaStore;
 import android.util.Base64;
-import android.view.LayoutInflater;
-import android.view.View;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 
 import com.arjundabbe.jivanman.R;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
-
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
+import com.arjundabbe.jivanman.database.DBHelper;
 
 public class MyProfileActivity extends AppCompatActivity {
 
-    private ImageView ivprofileImage, btnBack, btn_camera;
-    private TextView tvName, tvRole, tvMobile, tvId;
-    private Bitmap bitmap;
-    private SharedPreferences prefs;
+    private ImageView ivprofileImage, btnBack;
+    private TextView tvProfileName, tvProfileEmail,tvProfileRole, tvProfileMobile, tvProfileId, editProfile;
 
-    // Request codes for gallery and camera actions
-    private final int GALLERY_REQUEST_CODE = 999;
-    private final int CAMERA_REQUEST_CODE = 998;
-
+    @SuppressLint({"Range", "MissingInflatedId"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
 
-        // Initialize views
+        // View initialization
         ivprofileImage = findViewById(R.id.ivprofileImage);
         btnBack = findViewById(R.id.btn_back);
-        btn_camera = findViewById(R.id.btn_camera);
-        tvName = findViewById(R.id.profile_name);
-        tvRole = findViewById(R.id.profile_role);
-        tvMobile = findViewById(R.id.profile_mobile);
-        tvId = findViewById(R.id.profile_id);
+        tvProfileName = findViewById(R.id.tvProfileName);
+        tvProfileEmail = findViewById(R.id.tvProfileEmail);
+        tvProfileRole = findViewById(R.id.tvProfileRole);
+        tvProfileMobile = findViewById(R.id.tvProfileMobile);
+        tvProfileId = findViewById(R.id.tvProfileId);
 
-        // Get SharedPreferences instance to retrieve user data
-        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        editProfile = findViewById(R.id.editProfile);
 
-        // Load and set user information
-        tvName.setText(prefs.getString("name", "~ नाव"));
-        tvRole.setText(prefs.getString("role", "वाचक/पत्रकार"));
-        tvMobile.setText("+91 " + prefs.getString("mobile", "XXXXXXXXXX"));
-        tvId.setText(prefs.getString("jivanman_id", "JIVXXXXXXXXXXX"));
+        // Back button
+        btnBack.setOnClickListener(v -> finish());
 
-        // Load saved profile image from SharedPreferences
+        // Open edit profile screen
+        editProfile.setOnClickListener(v -> {
+            startActivity(new android.content.Intent(MyProfileActivity.this, EditProfileActivity.class));
+        });
+
+        // Load user data
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String email = prefs.getString("email", null);
+
+        if (email != null) {
+            DBHelper dbHelper = new DBHelper(this);
+            Cursor cursor = dbHelper.getUserByEmail(email);
+
+            if (cursor != null) {
+                Log.d("MyProfile", "Cursor count: " + cursor.getCount());
+            }
+
+            if (cursor != null && cursor.moveToFirst()) {
+                tvProfileName.setText(cursor.getString(cursor.getColumnIndex("name")));
+                tvProfileEmail.setText(cursor.getString(cursor.getColumnIndex("email")));
+                tvProfileRole.setText(cursor.getString(cursor.getColumnIndex("role")));
+                tvProfileMobile.setText("+91-" + cursor.getString(cursor.getColumnIndex("mobileno")));
+                tvProfileId.setText("JIV" + cursor.getString(cursor.getColumnIndex("id"))); // optional
+            }
+
+            if (cursor != null) cursor.close();
+        }
+
+
+        // Load profile image from SharedPreferences
         String encodedImage = prefs.getString("profile_image", null);
         if (encodedImage != null) {
             byte[] imageBytes = Base64.decode(encodedImage, Base64.DEFAULT);
@@ -67,102 +79,46 @@ public class MyProfileActivity extends AppCompatActivity {
             ivprofileImage.setImageBitmap(savedBitmap);
         }
 
-        // Handle back button click
-        btnBack.setOnClickListener(v -> finish());
+        // Appearance
+        ivprofileImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        ivprofileImage.setClipToOutline(true); // Use rounded/circular outline in XML
 
-        // Open bottom sheet when camera icon is clicked
-        btn_camera.setOnClickListener(v -> openImageOptionBottomSheet());
+
+
     }
 
-    // Function to show bottom sheet dialog with image options
-    private void openImageOptionBottomSheet() {
-        View view = LayoutInflater.from(this).inflate(R.layout.bottom_image_picker, null);
-
-        // Get references to views inside the bottom sheet layout
-        ImageView closeBtn = view.findViewById(R.id.cross_btn);
-        CardView optionCamera = view.findViewById(R.id.option_camera);
-        CardView optionGallery = view.findViewById(R.id.option_gallery);
-
-        // Create and show the bottom sheet dialog
-        BottomSheetDialog dialog = new BottomSheetDialog(this);
-        dialog.setContentView(view);
-
-        dialog.show();
-
-        // Dismiss bottom sheet when close button is clicked
-        closeBtn.setOnClickListener(v -> dialog.dismiss());
-
-        // Launch camera when camera option is clicked
-        optionCamera.setOnClickListener(v -> {
-            dialog.dismiss();
-            openCamera();
-        });
-
-        // Launch gallery when gallery option is clicked
-        optionGallery.setOnClickListener(v -> {
-            dialog.dismiss();
-            openGallery();
-        });
-    }
-
-    // Open gallery to select image
-    private void openGallery() {
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("image/*");
-        startActivityForResult(Intent.createChooser(intent, "प्रोफाईल फोटो निवडा"), GALLERY_REQUEST_CODE);
-    }
-
-    // Open camera to take a photo
-    private void openCamera() {
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        // Check if there's a camera app available
-        if (intent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(intent, CAMERA_REQUEST_CODE);
-        } else {
-            Toast.makeText(this, "कॅमेरा उपलब्ध नाही", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    // Handle the result from gallery or camera
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    protected void onResume() {
+        super.onResume();
+        loadUserData();  // Load fresh user data every time
+    }
+    @SuppressLint("Range")
+    private void loadUserData() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String email = prefs.getString("email", null);
 
-        if (resultCode == RESULT_OK) {
-            // Image selected from gallery
-            if (requestCode == GALLERY_REQUEST_CODE && data != null && data.getData() != null) {
-                Uri imagePath = data.getData();
-                try {
-                    bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imagePath);
-                    ivprofileImage.setImageBitmap(bitmap);
-                    saveImageToSharedPreferences(bitmap);
-                    Toast.makeText(this, "प्रोफाईल फोटो अपडेट झाला", Toast.LENGTH_SHORT).show();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    Toast.makeText(this, "फोटो लोड करण्यात त्रुटी आली", Toast.LENGTH_SHORT).show();
-                }
+        if (email != null) {
+            DBHelper dbHelper = new DBHelper(this);
+            Cursor cursor = dbHelper.getUserByEmail(email);
+
+            if (cursor != null && cursor.moveToFirst()) {
+                tvProfileName.setText(cursor.getString(cursor.getColumnIndex("name")));
+                tvProfileEmail.setText(cursor.getString(cursor.getColumnIndex("email")));
+                tvProfileRole.setText(cursor.getString(cursor.getColumnIndex("role")));
+                tvProfileMobile.setText("+91-" + cursor.getString(cursor.getColumnIndex("mobileno")));
+                tvProfileId.setText("JIV" + cursor.getString(cursor.getColumnIndex("id")));
             }
-            // Image captured from camera
-            else if (requestCode == CAMERA_REQUEST_CODE && data != null) {
-                bitmap = (Bitmap) data.getExtras().get("data");
-                if (bitmap != null) {
-                    ivprofileImage.setImageBitmap(bitmap);
-                    saveImageToSharedPreferences(bitmap);
-                    Toast.makeText(this, "प्रोफाईल फोटो अपडेट झाला", Toast.LENGTH_SHORT).show();
-                }
-            }
+
+            if (cursor != null) cursor.close();
+        }
+
+        // Reload profile image
+        String encodedImage = prefs.getString("profile_image", null);
+        if (encodedImage != null) {
+            byte[] imageBytes = Base64.decode(encodedImage, Base64.DEFAULT);
+            Bitmap savedBitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+            ivprofileImage.setImageBitmap(savedBitmap);
         }
     }
 
-    // Save the selected/captured image to SharedPreferences as Base64 string
-    private void saveImageToSharedPreferences(Bitmap bitmap) {
-        ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteStream);
-        byte[] imageBytes = byteStream.toByteArray();
-        String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
-
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putString("profile_image", encodedImage);
-        editor.apply();
-    }
 }

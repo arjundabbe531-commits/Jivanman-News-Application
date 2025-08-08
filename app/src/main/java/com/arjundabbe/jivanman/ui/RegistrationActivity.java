@@ -20,12 +20,12 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.arjundabbe.jivanman.R;
+import com.arjundabbe.jivanman.database.DBHelper;
 
 public class RegistrationActivity extends AppCompatActivity {
 
     ImageView ivToggleRegistrationPassword1, ivToggleRegistrationPassword2;
-    EditText etRegistrationUsername, etRegistrationMobileNo, etRegistrationEmail,
-            etRegistrationPassword1, etRegistrationPassword2;
+    EditText etRegistrationUsername, etRegistrationMobileNo, etRegistrationEmail, etRegistrationPassword1, etRegistrationPassword2;
     Button btnRegistrationRegistration;
     TextView tvRegistrationLoginNow;
     RadioGroup rgRoles;
@@ -36,6 +36,8 @@ public class RegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
         setTitle("नोंदणी");
+        DBHelper dbHelper = new DBHelper(this);
+
 
         etRegistrationUsername = findViewById(R.id.etRegistrationUsername);
         etRegistrationEmail = findViewById(R.id.etRegistrationEmail);
@@ -78,7 +80,7 @@ public class RegistrationActivity extends AppCompatActivity {
         btnRegistrationRegistration.setOnClickListener(v -> {
             String email = etRegistrationEmail.getText().toString().trim();
             String password = etRegistrationPassword1.getText().toString().trim();
-            String fullname = etRegistrationUsername.getText().toString().trim();
+            String username = etRegistrationUsername.getText().toString().trim();
             String mobile = etRegistrationMobileNo.getText().toString().trim();
             boolean isValid = true;
 
@@ -92,7 +94,7 @@ public class RegistrationActivity extends AppCompatActivity {
             }
 
             // Validate username
-            if (fullname.isEmpty() || fullname.length() < 3) {
+            if (username.isEmpty() || username.length() < 3) {
                 etRegistrationUsername.setError("कृपया पूर्ण नाव भरा");
                 isValid = false;
             }
@@ -139,28 +141,36 @@ public class RegistrationActivity extends AppCompatActivity {
             }
 
             if (isValid) {
-                Toast.makeText(RegistrationActivity.this, "नोंदणी यशस्वी", Toast.LENGTH_SHORT).show();
+                boolean isInserted = dbHelper.registerUser(username, mobile, email, username, password,role); // using fullname for username for now
+                if (isInserted) {
+                    Toast.makeText(RegistrationActivity.this, "नोंदणी यशस्वी", Toast.LENGTH_SHORT).show();
 
-                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(RegistrationActivity.this);
-                SharedPreferences.Editor editor = preferences.edit();
 
-                // Simulate unique Jivanman ID using timestamp
-                String jivanmanId = "JIV" + System.currentTimeMillis();
+                    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(RegistrationActivity.this);
+                    SharedPreferences.Editor editor = preferences.edit();
 
-                editor.putString("name", fullname);
-                editor.putString("mobile", mobile);
-                editor.putString("email", email);
-                editor.putString("role", role);
-                editor.putString("jivanman_id", jivanmanId);
-                editor.putString("myQRValue", "https://wa.me/91" + mobile);
-                editor.putBoolean("isLogin", true);
-                editor.putString("password", password);
-                editor.apply();
+                    // Simulate unique Jivanman ID using timestamp
+                    String jivanmanId = "JIV" + System.currentTimeMillis();
 
-                // Navigate to Login Activity
+                    editor.putString("username",username);
+                    editor.putString("mobile", mobile);
+                    editor.putString("name",username);
+                    editor.putString("email", email);
+                    editor.putString("role", role);
+                    editor.putString("jivanman_id", jivanmanId);
+                    editor.putString("myQRValue", "https://wa.me/91" + mobile);
+                    editor.putBoolean("isLogin", true);
+                    editor.putString("password", password);
+                    editor.apply();
 
-                startActivity(new Intent(RegistrationActivity.this, LoginActivity.class));
-                finish();
+                    // Navigate to Login Activity
+
+                    startActivity(new Intent(RegistrationActivity.this, LoginActivity.class));
+                    finish();
+                }
+                else {
+                    Toast.makeText(RegistrationActivity.this, "हा मोबाईल, ईमेल किंवा वापरकर्ता नाव आधीच नोंदणीकृत आहे", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }

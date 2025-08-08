@@ -31,7 +31,7 @@
 
     <!-- Status / Utility -->
     <color name="success">#4CAF50</color>
-    <color name="error">#D32F2F</color>
+    <color name="error_red">#D32F2F</color>
     <color name="info">#2196F3</color>
     <color name="warning">#FFC107</color>
 </resources>

@@ -78,4 +78,7 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0' // Glide compiler
 
     implementation 'com.github.KwabenBerko:News-API-Java:1.0.2'
+
+    implementation 'com.airbnb.android:lottie:6.1.0'
+
 }

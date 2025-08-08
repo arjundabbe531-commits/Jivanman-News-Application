@@ -1,30 +1,51 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
 
-    <!-- Fixed Toolbar -->
-    <LinearLayout
+    <!-- Custom Toolbar -->
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="90dp"
         android:background="#ED835A"
-        android:gravity="center_vertical|start"
-        android:orientation="vertical"
         android:paddingTop="25dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
         android:elevation="4dp">
+
+        <!-- Back Button -->
+
+        <!-- App Logo (Center aligned) -->
+        <ImageView
+            android:id="@+id/backarrow"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginBottom="17dp"
+            android:background="@drawable/circle_button_bg"
+            android:clickable="true"
+            android:contentDescription="मागे जा"
+            android:focusable="true"
+            android:padding="6dp"
+            android:paddingTop="20dp"
+            android:src="@drawable/baseline_arrow_back_24" />
 
         <ImageView
             android:id="@+id/HomeActivityActionbarImage"
             android:layout_width="196dp"
             android:layout_height="128dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
             android:adjustViewBounds="true"
-            android:contentDescription="Jivanman app logo"
             android:scaleType="fitCenter"
-            android:layout_marginTop="8dp"
+            android:contentDescription="Jivanman लोगो"
             android:src="@drawable/jivanman_name5" />
-    </LinearLayout>
+    </RelativeLayout>
 
-    <!-- Scrollable News Content -->
+    <!-- Scrollable Content -->
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -37,9 +58,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
-
-            <!-- Title -->
+            <!-- Article Title -->
             <TextView
                 android:id="@+id/detailTitle"
                 android:layout_width="match_parent"
@@ -47,63 +66,57 @@
                 android:textStyle="bold"
                 android:textSize="20sp"
                 android:layout_marginBottom="10dp"
-                android:importantForAccessibility="yes"
-                android:textColor="?android:textColorSecondary"
-                android:text="शरद पवार – अजित पवार एकत्र? विधानसभा निवडणुकीसाठी नवा डावपेच!" />
+                android:textColor="@android:color/black"
+                android:text="लेख शीर्षक" />
 
-            <!-- Description -->
+            <!-- Article Description -->
             <TextView
                 android:id="@+id/detailDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:importantForAccessibility="yes"
-                android:textColor="?android:textColorSecondary"
-                android:layout_marginBottom="12dp" />
+                android:layout_marginBottom="12dp"
+                android:textColor="@android:color/black" />
 
-            <!-- Author -->
+            <!-- Written by -->
             <TextView
                 android:id="@+id/writternby"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Written by अर्जुन डब्बे"
-                android:layout_marginBottom="2dp"
-                android:importantForAccessibility="yes"
-                android:textColor="?android:textColorSecondary"
-                android:textSize="14sp" />
+                android:text="लेखक: अर्जुन डब्बे"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="14sp"
+                android:layout_marginBottom="2dp" />
 
-            <!-- Date -->
+            <!-- Article Date -->
             <TextView
                 android:id="@+id/detailDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Updated: Aug 05 2025 08:47 am"
-                android:layout_marginBottom="12dp"
-                android:textColor="?android:textColorSecondary"
-                android:importantForAccessibility="yes"
-                android:textSize="14sp" />
+                android:text="अपडेट: ५ ऑगस्ट २०२५, सकाळी ८:४७"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="14sp"
+                android:layout_marginBottom="12dp" />
 
-            <!-- Share/Bookmark Row -->
+            <!-- Action Buttons -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="start"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp">
+                android:layout_marginBottom="12dp">
 
                 <ImageView
                     android:id="@+id/btnSave"
                     android:layout_width="36dp"
                     android:layout_height="36dp"
                     android:background="@drawable/circle_button_bg"
-                    android:layout_marginEnd="16dp"
                     android:padding="6dp"
-                    android:contentDescription="Save article"
-                    android:importantForAccessibility="yes"
-                    android:focusable="true"
+                    android:layout_marginEnd="12dp"
+                    android:contentDescription="लेख सेव्ह करा"
+                    android:src="@drawable/baseline_bookmark_border_24"
                     android:clickable="true"
-                    android:src="@drawable/baseline_bookmark_border_24" />
+                    android:focusable="true" />
 
                 <ImageView
                     android:id="@+id/btnWhatsApp"
@@ -111,11 +124,11 @@
                     android:layout_height="36dp"
                     android:background="@drawable/circle_button_bg"
                     android:padding="6dp"
-                    android:layout_marginEnd="16dp"
-                    android:focusable="true"
+                    android:layout_marginEnd="12dp"
+                    android:contentDescription="WhatsApp वर शेअर करा"
+                    android:src="@drawable/baseline_whatsapp_24"
                     android:clickable="true"
-                    android:contentDescription="Share on WhatsApp"
-                    android:src="@drawable/baseline_whatsapp_24" />
+                    android:focusable="true" />
 
                 <ImageView
                     android:id="@+id/btnShare"
@@ -123,21 +136,22 @@
                     android:layout_height="36dp"
                     android:background="@drawable/circle_button_bg"
                     android:padding="6dp"
-                    android:layout_marginEnd="16dp"
-                    android:focusable="true"
+                    android:layout_marginEnd="12dp"
+                    android:contentDescription="इतरत्र शेअर करा"
+                    android:src="@drawable/baseline_share_24"
                     android:clickable="true"
-                    android:contentDescription="Share article"
-                    android:src="@drawable/baseline_share_24" />
+                    android:focusable="true" />
             </LinearLayout>
+
             <!-- News Image -->
             <ImageView
                 android:id="@+id/detailImage"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:src="@drawable/fadnvis_raj"
                 android:scaleType="centerCrop"
-                android:contentDescription="News related image"
-                android:layout_marginBottom="12dp" />
+                android:src="@drawable/fadnvis_raj"
+                android:layout_marginBottom="16dp"
+                android:contentDescription="लेख संबंधित प्रतिमा" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </LinearLayout>

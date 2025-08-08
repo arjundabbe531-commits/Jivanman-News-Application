@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/my_secoundary"
+    android:fillViewport="true"
+    android:paddingBottom="24dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:gravity="center_horizontal">
+
+        <!-- Toolbar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="12dp"
+            android:paddingVertical="8dp">
+
+            <ImageView
+                android:id="@+id/btn_back"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/baseline_arrow_back_24"
+                android:contentDescription="Back"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                app:tint="?attr/colorOnBackground" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="प्रोफाईल संपादन"
+                android:textColor="?attr/colorOnBackground"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:fontFamily="@font/noto_sans_devanagari_ui_bold" />
+        </LinearLayout>
+
+        <!-- Profile Image -->
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp">
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivprofileImage"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:scaleType="centerCrop"
+                android:adjustViewBounds="true"
+                android:src="@drawable/round_person_24"
+                app:shapeAppearanceOverlay="@style/CircleImageView"
+                android:contentDescription="Profile Image" />
+
+            <ImageView
+                android:id="@+id/btn_camera"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/baseline_photo_camera_24"
+                android:background="@drawable/circle_white_bg"
+                android:padding="8dp"
+                android:layout_gravity="bottom|end"
+                android:layout_marginBottom="4dp"
+                android:layout_marginEnd="4dp"
+                android:contentDescription="Camera icon"
+                android:elevation="6dp"
+                app:tint="?attr/colorOnBackground" />
+        </FrameLayout>
+
+        <!-- Editable Fields -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:startIconDrawable="@drawable/baseline_person_24"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/my_primary"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="नाव"
+                android:layout_marginTop="24dp"
+                android:drawableStart="@drawable/baseline_person_24"
+                android:drawablePadding="12dp"
+                android:padding="12dp"
+                android:inputType="textPersonName"
+                android:textColor="?android:textColorSecondary"
+                android:textColorHint="@color/black"
+                android:fontFamily="@font/noto_sans_devanagari_ui_regular" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:startIconDrawable="@drawable/baseline_phone_android_24"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/my_primary"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="मोबाईल क्रमांक"
+                android:layout_marginTop="8dp"
+                android:drawableStart="@drawable/baseline_phone_android_24"
+                android:drawablePadding="12dp"
+                android:padding="12dp"
+                android:inputType="phone"
+                android:textColor="?android:textColorSecondary"
+                android:textColorHint="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:startIconDrawable="@drawable/baseline_email_24"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/my_primary"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="ईमेल"
+                android:layout_marginTop="8dp"
+                android:drawableStart="@drawable/baseline_email_24"
+                android:drawablePadding="12dp"
+                android:padding="12dp"
+                android:inputType="textEmailAddress"
+                android:textColor="?android:textColorSecondary"
+                android:textColorHint="@color/black" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        <!-- Save Button -->
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="जतन करा"
+            android:textSize="16dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/my_primary"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:fontFamily="@font/mukta_extralight" />
+
+        <TextView
+            android:id="@+id/tvDeleteAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="आपले खाते हटवू इच्छिता का?"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/error_red"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="8dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Delete Profile Option"
+            android:fontFamily="@font/noto_sans_devanagari_ui_bold"/>
+
+    </LinearLayout>
+</ScrollView>

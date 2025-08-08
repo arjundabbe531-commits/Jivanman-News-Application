@@ -55,7 +55,7 @@
             android:layout_marginTop="24dp"
             android:hint="इमेल"
             android:inputType="textEmailAddress"
-            android:drawableStart="@drawable/baseline_person_24"
+            android:drawableStart="@drawable/baseline_email_24"
             android:drawablePadding="12dp"
             android:padding="12dp"
             android:background="@drawable/rounded_edittext"

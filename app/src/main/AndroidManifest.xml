@@ -27,6 +27,9 @@
         android:theme="@style/Theme.Jivanman"
         tools:targetApi="31">
         <activity
+            android:name=".ui.EditProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.NewsDetailActivity"
             android:exported="false" />
         <activity

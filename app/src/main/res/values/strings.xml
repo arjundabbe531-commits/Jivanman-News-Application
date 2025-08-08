@@ -3,4 +3,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_my_location">MyLocationActivity</string>
+    <string name="share_article">Share article</string>
+    <string name="remove_saved">Remove from saved</string>
+    <string name="article_image_desc">Image related to article</string>
+
 </resources>
