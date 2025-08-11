@@ -36,7 +36,3 @@ Stay connected with your community, festivals, local events, and more — all in
 
 ---
 
-## 📦 Installation
-
-```bash
-git clone https://github.com/arjundabbe531-commits/Jivanman-News-Application.git
