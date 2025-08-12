@@ -1,6 +1,8 @@
 package com.arjundabbe.jivanman.ui;
 
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -8,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.arjundabbe.jivanman.NetworkChangeListener;
 import com.arjundabbe.jivanman.R;
 import com.arjundabbe.jivanman.models.SavedArticle;
 import com.arjundabbe.jivanman.util.SavedPrefsManager;
@@ -18,6 +21,7 @@ public class NewsDetailActivity extends AppCompatActivity {
     // Declare UI components
     TextView titleText, descText, dateText;
     ImageView backArrow,newsImage, btnSave, btnWhatsApp, btnShare;
+    private final NetworkChangeListener networkChangeListener = new NetworkChangeListener();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,6 +120,17 @@ public class NewsDetailActivity extends AppCompatActivity {
             // Open share dialog
             startActivity(Intent.createChooser(shareIntent, "कशाद्वारे शेअर करायचे ते निवडा"));
         });
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        registerReceiver(networkChangeListener, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        unregisterReceiver(networkChangeListener);
     }
 
 }

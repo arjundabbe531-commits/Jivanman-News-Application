@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="6dp"
     android:paddingStart="8dp"
     android:paddingEnd="8dp">
 
@@ -63,34 +64,5 @@
         app:layout_constraintStart_toEndOf="@id/articleImage"
         app:layout_constraintTop_toBottomOf="@id/articleDescription" />
 
-    <!-- Save Button -->
-    <ImageView
-        android:id="@+id/btnSave"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="6dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:src="@drawable/baseline_bookmark_border_24"
-        android:contentDescription="Save"
-        app:layout_constraintStart_toEndOf="@id/articleDateTime"
-        app:layout_constraintTop_toTopOf="@id/articleDateTime"
-        app:layout_constraintBottom_toBottomOf="@id/articleDateTime" />
-
-    <!-- Share Button -->
-    <ImageView
-        android:id="@+id/btnShare"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="6dp"
-        android:src="@drawable/baseline_share_24"
-        android:contentDescription="Share"
-        app:layout_constraintStart_toEndOf="@id/btnSave"
-        app:layout_constraintTop_toTopOf="@id/btnSave"
-        app:layout_constraintBottom_toBottomOf="@id/btnSave" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

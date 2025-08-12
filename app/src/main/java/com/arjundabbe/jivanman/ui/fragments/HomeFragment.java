@@ -41,6 +41,41 @@ public class HomeFragment extends Fragment {
     private List<NewsArticle> getSampleNews() {
         List<NewsArticle> newsList = new ArrayList<>();
 
+        // ======================= 12 August 2025 – आज =======================
+
+        newsList.add(new NewsArticle(
+                "भारताने 2030 पर्यंत कार्बन उत्सर्जनात 50% कपात करण्याचा उद्दिष्ट जाहीर केला",
+                "पंतप्रधानांनी जगासमोर भारताच्या हरित उर्जेच्या दृष्टीने महत्वाकांक्षी योजना सादर केली, ज्यामुळे पर्यावरण संवर्धनात मोठा वाटा पडणार आहे.",
+                "https://staticimg.amarujala.com/assets/images/2024/05/13/co2-pollution_89efcd3b4ccefc55e1aba9c6d4a2f8d3.jpeg?w=674&dpr=1.0&q=80",
+                "12 Aug 2025 • 10:30 AM"
+        ));
+
+        newsList.add(new NewsArticle(
+                "उद्धव ठाकरे यांचे ट्रम्पवर टीकास्त्र",
+                "उद्धव ठाकरे म्हणाले—‘डोनाल्ड ट्रम्प पंतप्रधान मोदींची खिल्ली उडवत आहेत’; मोदींच्या उत्तरक्षमतेवर देखील निशाणा.",
+                "https://etvbharatimages.akamaized.net/etvbharat/prod-images/07-08-2025/1200-675-24760441-thumbnail-16x9-uddhavthackeray-aspera.jpg??imwidth=1200",
+                "12 Aug 2025 • 09:15 AM"
+        ));
+        newsList.add(new NewsArticle(
+                "दुलीप ट्रॉफी—शुभमन गिलने संघनेत्तृत्व स्वीकारले",
+                "भारताचे कसोटी कर्णधार शुभमन गिल उत्तरा विभागीय संघाचे नेतृत्व करणार; दुलीप ट्रॉफी क्वार्टर फायनल 28 ऑगस्टपासून.",
+                "https://www.livehindustan.com/lh-img/smart/img/2025/08/07/1200x900/PTI07-30-2025-000351B-0_1754576366355_1754576389644.jpg",
+                "12 Aug 2025 • 10:00 AM"
+        ));
+        newsList.add(new NewsArticle(
+                "जेजुरीत पाच मजली इमारत खचली",
+                "पुणे जिल्ह्यातील जेजुरी शहरेतील पाच मजली नवीन इमारत खचल्यामुळे नगरपालिका पोलिस बंदोबस्तात रात्रभर सुरक्षा; नंतर इमारत पाडण्यात आली.",
+                "https://akm-img-a-in.tosshub.com/aajtak/images/story/202407/66893e8060da9-surat-building-collapse-065422990-16x9.jpg?size=948:533",
+                "11 Aug 2025 • 09:57 PM"
+        ));
+
+
+        newsList.add(new NewsArticle(
+                "नवी मुंबईत 'ग्रीन पार्क'चे उद्घाटन",
+                "नवी मुंबई महापालिकेने शहरातील प्रदूषण कमी करण्यासाठी नवीन ग्रीन पार्कचा लोकार्पण केले; नागरिकांमध्ये पर्यावरण संवर्धनाबाबत जागरूकता वाढेल.",
+                "https://translate.google.com/website?sl=en&tl=hi&hl=hi&client=imgs&u=https://images.timesproperty.com/blog/9881/1747639631_blogimage.webp",
+                "12 Aug 2025 • 10:15 AM"
+        ));
         newsList.add(new NewsArticle(
                 "मुख्यमंत्री फडणवीस यांनी दिला 5000 मेगावॅट सौर उर्जेचा टप्पा पूर्ण करण्याचा 'सप्टेंबर 2025' पर्यंतचा आदेश",
                 "केंद्रीय समीक्षा बैठकीत EV‑सौर धोरण ग्रामीण भागात जलद अंमलबजावणीसाठी सप्टेंबर 2025 पर्यंत 5000 मेगावॅट क्षमतेचा टप्पा पूर्ण करण्याचा आदेश.",
@@ -145,7 +180,6 @@ public class HomeFragment extends Fragment {
                 "https://www.shabdakhadag.in/uploads/product/01082025125050_Kokate...jpg",
                 "01 Aug 2025 • 08:39 PM"
         ));
-
 
         return newsList;
     }

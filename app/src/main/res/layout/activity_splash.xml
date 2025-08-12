@@ -45,14 +45,14 @@
             android:id="@+id/subtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="जनसामान्यांचे"
+            android:text="जनसामाण्यांचे"
             android:textColor="#2F2F2F"
             android:textSize="16sp"
-            android:fontFamily="@font/tiro_devanagari_marathi_italic"
+            android:fontFamily="@font/tiro_devanagari_marathi_regular"
             android:letterSpacing="1.01"
             android:layout_gravity="end|top"
             android:layout_marginTop="6dp"
-            android:layout_marginEnd="4dp"/>
+            android:layout_marginEnd="21dp"/>
     </FrameLayout>
 
     <!-- Powered by / Credit -->

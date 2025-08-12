@@ -2,7 +2,9 @@ package com.arjundabbe.jivanman.ui;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -20,6 +22,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.arjundabbe.jivanman.NetworkChangeListener;
 import com.arjundabbe.jivanman.R;
 import com.arjundabbe.jivanman.ui.fragments.EpaperFragment;
 import com.arjundabbe.jivanman.ui.fragments.HomeFragment;
@@ -33,6 +36,9 @@ public class HomeActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ImageButton btnDrawerToggle;
     Toolbar toolbar;
+    private final NetworkChangeListener networkChangeListener = new NetworkChangeListener();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -186,6 +192,17 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        registerReceiver(networkChangeListener, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        unregisterReceiver(networkChangeListener);
     }
 
 
