@@ -1,10 +1,13 @@
 package com.arjundabbe.jivanman.ui;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.telephony.SmsManager;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Patterns;
@@ -18,6 +21,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.arjundabbe.jivanman.R;
 import com.arjundabbe.jivanman.database.DBHelper;
@@ -38,6 +43,11 @@ public class RegistrationActivity extends AppCompatActivity {
         setTitle("नोंदणी");
         DBHelper dbHelper = new DBHelper(this);
 
+        if (ContextCompat.checkSelfPermission(RegistrationActivity.this, Manifest.permission.SEND_SMS)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,new String[] {
+                    Manifest.permission.SEND_SMS},111);
+        }
 
         etRegistrationUsername = findViewById(R.id.etRegistrationUsername);
         etRegistrationEmail = findViewById(R.id.etRegistrationEmail);
@@ -109,6 +119,7 @@ public class RegistrationActivity extends AppCompatActivity {
             // Validate password
             String passwordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=!]).{8,}$";
 
+
             if (password.isEmpty()) {
                 etRegistrationPassword1.setError("कृपया पासवर्ड भरा");
                 etRegistrationPassword1.setVisibility(View.VISIBLE);
@@ -163,8 +174,27 @@ public class RegistrationActivity extends AppCompatActivity {
                     editor.putString("password", password);
                     editor.apply();
 
-                    // Navigate to Login Activity
+                    try {
+                        String strSmsMobileNo = etRegistrationMobileNo.getText().toString().trim();
+                        String strWelcomeMessage = "";
 
+                        if(role.equalsIgnoreCase("वाचक")) {
+                            strWelcomeMessage = "नमस्कार " + username + "! Jivanman मध्ये वाचक म्हणून तुमचे हार्दिक स्वागत आहे!";
+                        } else if(role.equalsIgnoreCase("पत्रकार")) {
+                            strWelcomeMessage = "नमस्कार " + username + "! Jivanman मध्ये पत्रकार म्हणून तुमचे स्वागत आहे! तुमची माहिती शेअर करण्यास तयार रहा!";
+                        } else {
+                            strWelcomeMessage = "नमस्कार " + username + "! Jivanman मध्ये तुमचे स्वागत आहे!";
+                        }
+
+
+                        SmsManager smsManager = SmsManager.getDefault();
+                        smsManager.sendTextMessage(strSmsMobileNo,null,strWelcomeMessage,null,null);
+
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+
+                    // Navigate to Login Activity
                     startActivity(new Intent(RegistrationActivity.this, LoginActivity.class));
                     finish();
                 }

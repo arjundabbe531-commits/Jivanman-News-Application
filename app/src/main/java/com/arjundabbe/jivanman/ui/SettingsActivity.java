@@ -105,6 +105,14 @@ public class SettingsActivity extends AppCompatActivity {
             startActivity(new Intent(SettingsActivity.this, MyQrActivity.class));
         });
 
+        findViewById(R.id.card_aboutus).setOnClickListener(v -> {
+            startActivity(new Intent(SettingsActivity.this, AboutUsActivity.class));
+        });
+
+        findViewById(R.id.card_contactus).setOnClickListener(v -> {
+            startActivity(new Intent(SettingsActivity.this, ContactUsActivity.class));
+        });
+
         // Logout logic
         findViewById(R.id.card_logout).setOnClickListener(v -> showLogoutDialog());
     }

@@ -34,4 +34,8 @@
     <color name="error_red">#D32F2F</color>
     <color name="info">#2196F3</color>
     <color name="warning">#FFC107</color>
+    <!-- Primary Colors -->
+    <color name="purple_500">#6200EE</color> <!-- Button Send SMS -->
+    <color name="teal_700">#018786</color>  <!-- Button Send Email -->
+
 </resources>
