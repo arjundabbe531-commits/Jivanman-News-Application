@@ -26,13 +26,3 @@ Stay connected with your community, festivals, local events, and more — all in
 
 ---
 
-## 📸 Screenshots
-
-### 🆔 Jivanman ID Card Example
-
-![Jivanman ID Card](screenshots/jivanman_id_card.jpg)
-
-*This is a sample ID card layout used in the Jivanman application.*
-
----
-
