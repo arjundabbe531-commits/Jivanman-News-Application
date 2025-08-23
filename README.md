@@ -1,6 +1,6 @@
 # 📱 Jivanman-News-Application
 
-**Jivanman** is a modern local news and community app that provides real-time updates, village information, and important announcements in a clean and easy-to-use interface.
+**Jivanman** is a modern local news and community app that provides real-time updates and important announcements in a clean and easy-to-use interface.
 
 Stay connected with your community, festivals, local events, and more — all in one app.
 
