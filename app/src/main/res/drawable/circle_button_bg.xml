@@ -4,14 +4,14 @@
     <!-- Pressed state -->
     <item android:state_pressed="true">
         <shape android:shape="oval">
-            <solid android:color="#D6D6D6" /> <!-- Light gray on press -->
+            <solid android:color="@color/buttns_bg_pressed" />
         </shape>
     </item>
 
     <!-- Default state -->
     <item>
         <shape android:shape="oval">
-            <solid android:color="#EEEEEE" /> <!-- Default light circle -->
+            <solid android:color="@color/buttns_bg" />
         </shape>
     </item>
 </selector>

@@ -1,41 +1,64 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Base Colors -->
+    <!-- Existing defined colors (already present) -->
     <color name="black">#000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="green">#09F213</color>
-    <color name="red">#F00723</color>
-    <color name="yellow">#FFC000</color>
-    <color name="orange">#FF6F00</color>
-    <color name="safroon">#DD7612</color>
+    <color name="white">#FFFFFF</color>
 
-    <!-- Brand and Theme Colors -->
-    <color name="my_primary">#ED835A</color>
-    <color name="my_secoundary">#EAF0FF</color>
+    <!-- Brand -->
+    <color name="jivanman_name">#6A040F</color>
+    <color name="my_primary_dark">#C75F3A</color>
+    <color name="my_secondary">#FFF3E6</color>
     <color name="splash_bg">#EAF0FF</color>
+    <color name="my_primary">#ED835A</color> <!-- bright orange -->
+    <color name="on_primary">#000000</color> <!-- black text/icons -->
 
-    <!-- Accent / Supportive Colors -->
-    <color name="lightorange">#876750</color>
-    <color name="lightblue">#3D3489</color>
-    <color name="purple">#800080</color>
-    <color name="purple_700">#3700B3</color>
+    <!-- Aliases for backward compatibility -->
+    <color name="orange">@color/my_primary</color>
+    <color name="purple_500">#6200EE</color>
+    <color name="teal_700">#018786</color>
+    <color name="my_secoundary">@color/my_secondary</color> <!-- typo fixed alias -->
 
-    <!-- Backgrounds & Neutrals -->
+    <!-- Backgrounds -->
     <color name="appBackground">#C1D7E1</color>
-    <color name="gray_light">#F5F5F5</color>
-    <color name="gray_dark">#808080</color>
+    <color name="colorSurface">#FFFFFF</color>
+    <color name="colorOnSurface">#212121</color>
 
-    <!-- Text Colors -->
+    <!-- Text -->
     <color name="text_primary">#212121</color>
     <color name="text_secondary">#757575</color>
+    <color name="edit_profile_text">@color/my_primary</color>
 
-    <!-- Status / Utility -->
+    <!-- Accents -->
+    <color name="accent_blue">#3D3489</color>
+    <color name="accent_purple">#8E24AA</color>
+    <color name="accent_green">#4CAF50</color>
+    <color name="accent_red">#E53935</color>
+    <color name="accent_yellow">#FFB300</color>
+    <color name="yellow">#FFB300</color>
+
+    <!-- Utility -->
     <color name="success">#4CAF50</color>
-    <color name="error_red">#D32F2F</color>
     <color name="info">#2196F3</color>
     <color name="warning">#FFC107</color>
-    <!-- Primary Colors -->
-    <color name="purple_500">#6200EE</color> <!-- Button Send SMS -->
-    <color name="teal_700">#018786</color>  <!-- Button Send Email -->
 
+    <!-- Legacy aliases -->
+    <color name="purple">#9C27B0</color>
+    <color name="lightorange">#FFCC80</color>
+    <color name="red">#F44336</color>
+    <color name="lightblue">#81D4FA</color>
+    <color name="nav_item_icon">#000000</color> <!-- black for light mode -->
+
+    <!-- Button backgrounds -->
+    <color name="buttns_bg">#EEEEEE</color> <!-- default button background -->
+    <color name="buttns_bg_pressed">#D6D6D6</color> <!-- when pressed -->
+
+    <!-- News Details Activity Text Colors -->
+    <color name="news_headline_text">#212121</color> <!-- dark gray/black -->
+    <color name="news_description_text">#424242</color> <!-- medium gray -->
+    <color name="news_writer_text">#616161</color> <!-- slightly lighter gray -->
+    <color name="news_date_text">#757575</color> <!-- even lighter gray -->
+
+    <!-- Accent / Highlights -->
+    <color name="primary_accent">@color/my_primary</color>  <!-- QR Label -->
+    <color name="divider">@color/lightorange</color>        <!-- Divider line -->
+    <color name="error_red">#D32F2F</color>                <!-- Note text -->
 </resources>

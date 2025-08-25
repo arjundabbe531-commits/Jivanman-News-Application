@@ -176,22 +176,16 @@ public class RegistrationActivity extends AppCompatActivity {
 
                     try {
                         String strSmsMobileNo = etRegistrationMobileNo.getText().toString().trim();
-                        String strWelcomeMessage = "";
-
-                        if(role.equalsIgnoreCase("वाचक")) {
-                            strWelcomeMessage = "नमस्कार " + username + "! Jivanman मध्ये वाचक म्हणून तुमचे हार्दिक स्वागत आहे!";
-                        } else if(role.equalsIgnoreCase("पत्रकार")) {
-                            strWelcomeMessage = "नमस्कार " + username + "! Jivanman मध्ये पत्रकार म्हणून तुमचे स्वागत आहे! तुमची माहिती शेअर करण्यास तयार रहा!";
-                        } else {
-                            strWelcomeMessage = "नमस्कार " + username + "! Jivanman मध्ये तुमचे स्वागत आहे!";
-                        }
-
+                        String strWelcomeMessage = username + ", तुमचे Jivanman मध्ये खूप हार्दिक स्वागत आहे!";
 
                         SmsManager smsManager = SmsManager.getDefault();
-                        smsManager.sendTextMessage(strSmsMobileNo,null,strWelcomeMessage,null,null);
+                        smsManager.sendTextMessage(strSmsMobileNo, null, strWelcomeMessage, null, null);
+
+                        Toast.makeText(RegistrationActivity.this, "SMS यशस्वीरित्या पाठवले", Toast.LENGTH_SHORT).show();
 
                     } catch (Exception e) {
-                        throw new RuntimeException(e);
+                        e.printStackTrace();
+                        Toast.makeText(RegistrationActivity.this, "SMS पाठवण्यात अयशस्वी", Toast.LENGTH_SHORT).show();
                     }
 
                     // Navigate to Login Activity
@@ -204,4 +198,5 @@ public class RegistrationActivity extends AppCompatActivity {
             }
         });
     }
+
 }

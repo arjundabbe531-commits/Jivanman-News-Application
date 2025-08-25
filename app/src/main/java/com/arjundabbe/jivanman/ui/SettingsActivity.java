@@ -19,15 +19,23 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.SwitchCompat;
 
 import com.arjundabbe.jivanman.R;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.appbar.MaterialToolbar;
 
 public class SettingsActivity extends AppCompatActivity {
 
     ImageView iconTheme, imageProfile;
     TextView text_profile_name, text_profile_role;
-    Switch switchNotifications, switchTheme;
+    SwitchCompat switchNotifications, switchTheme;
+    GoogleSignInOptions googleSignInOptions;
+
+    //connect with google Account
+    GoogleSignInClient googleSignInClient;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -36,7 +44,6 @@ public class SettingsActivity extends AppCompatActivity {
 
 
 
-        // Load theme settings
         SharedPreferences prefs = getSharedPreferences("app_settings", MODE_PRIVATE);
         boolean isDarkMode = prefs.getBoolean("dark_mode", false);
         AppCompatDelegate.setDefaultNightMode(
@@ -73,22 +80,18 @@ public class SettingsActivity extends AppCompatActivity {
         imageProfile.setScaleType(ImageView.ScaleType.CENTER_CROP);
         imageProfile.setClipToOutline(true); // Make sure you use a circular outline in XML
 
-        // Theme toggle setup
-        iconTheme.setImageResource(isDarkMode ? R.drawable.baseline_dark_mode_24 : R.drawable.baseline_light_mode_24);
+        // ✅ set switch state correctly
         switchTheme.setChecked(isDarkMode);
 
         switchTheme.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            SharedPreferences.Editor editor = prefs.edit();
-            editor.putBoolean("dark_mode", isChecked);
-            editor.apply();
-
+            prefs.edit().putBoolean("dark_mode", isChecked).apply();
             iconTheme.setImageResource(isChecked ? R.drawable.baseline_dark_mode_24 : R.drawable.baseline_light_mode_24);
             AppCompatDelegate.setDefaultNightMode(
                     isChecked ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO
             );
-
-            Toast.makeText(this, isChecked ? "डार्क मोड चालू" : "लाइट मोड चालू", Toast.LENGTH_SHORT).show();
+            recreate(); // refresh UI
         });
+
 
         // Notifications switch
         switchNotifications.setOnCheckedChangeListener((buttonView, isChecked) -> {
@@ -109,10 +112,11 @@ public class SettingsActivity extends AppCompatActivity {
             startActivity(new Intent(SettingsActivity.this, AboutUsActivity.class));
         });
 
-        findViewById(R.id.card_contactus).setOnClickListener(v -> {
-            startActivity(new Intent(SettingsActivity.this, ContactUsActivity.class));
-        });
+        googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
 
+        googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
         // Logout logic
         findViewById(R.id.card_logout).setOnClickListener(v -> showLogoutDialog());
     }
@@ -132,17 +136,22 @@ public class SettingsActivity extends AppCompatActivity {
         btnConfirm.setOnClickListener(v -> {
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this);
             SharedPreferences.Editor editor = preferences.edit();
-            editor.putBoolean("isLogin", false);
-            editor.apply();
 
-            Toast.makeText(SettingsActivity.this, "तुम्ही यशस्वीरित्या लॉगआउट झाला आहात", Toast.LENGTH_SHORT).show();
+            // ✅ Correct way: wait for signOut to complete
+            googleSignInClient.signOut().addOnCompleteListener(task -> {
+                editor.putBoolean("isLogin", false);
+                editor.apply();
 
-            Intent intent = new Intent(SettingsActivity.this, LoginActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-            dialog.dismiss();
+                Toast.makeText(SettingsActivity.this, "तुम्ही यशस्वीरित्या लॉगआउट झाला आहात", Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(SettingsActivity.this, LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                dialog.dismiss();
+            });
         });
 
         dialog.show();
     }
+
 }

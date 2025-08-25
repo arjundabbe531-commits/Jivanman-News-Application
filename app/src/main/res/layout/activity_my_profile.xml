@@ -70,7 +70,7 @@
             android:layout_height="wrap_content"
             android:text="प्रोफाईल संपादित करा"
             android:textSize="14sp"
-            android:textColor="@color/my_primary"
+            android:textColor="#ED835A"
             android:layout_gravity="center"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/noto_sans_devanagari_ui_regular"
@@ -93,7 +93,7 @@
                 android:layout_marginEnd="16dp"
                 android:src="@drawable/baseline_person_24"
                 android:contentDescription="Name icon"
-                app:tint="?attr/colorOnBackground" />
+                app:tint="@color/nav_item_icon" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -105,7 +105,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="नाव"
-                    android:textColor="?attr/colorOnBackground"
+                    android:textColor="@color/text_secondary"
                     android:textSize="14sp"
                     android:fontFamily="@font/noto_sans_devanagari_ui_regular" />
 
@@ -114,7 +114,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="~ नाव"
-                    android:textColor="?attr/colorOnBackground"
+                    android:textColor="@color/text_primary"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:fontFamily="@font/noto_sans_devanagari_ui_bold" />
@@ -134,7 +134,7 @@
             android:layout_marginEnd="16dp"
             android:src="@drawable/baseline_email_24"
             android:contentDescription="Name icon"
-            app:tint="?attr/colorOnBackground" />
+            app:tint="@color/nav_item_icon" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -146,7 +146,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="ईमेल"
-                android:textColor="?attr/colorOnBackground"
+                android:textColor="@color/text_secondary"
                 android:textSize="14sp"
                 android:fontFamily="@font/noto_sans_devanagari_ui_regular" />
 
@@ -155,7 +155,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="~ ईमेल"
-                android:textColor="?attr/colorOnBackground"
+                android:textColor="@color/text_primary"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/noto_sans_devanagari_ui_bold" />
@@ -176,7 +176,7 @@
                 android:layout_marginEnd="16dp"
                 android:src="@drawable/baseline_info_24"
                 android:contentDescription="Role icon"
-                app:tint="?attr/colorOnBackground" />
+                app:tint="@color/nav_item_icon" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -189,7 +189,7 @@
                     android:layout_height="wrap_content"
                     android:text="भूमिका"
                     android:textSize="14sp"
-                    android:textColor="?attr/colorOnBackground"
+                    android:textColor="@color/text_secondary"
                     android:fontFamily="@font/noto_sans_devanagari_ui_regular" />
 
                 <TextView
@@ -199,7 +199,7 @@
                     android:text="वाचक/पत्रकार"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:textColor="?attr/colorOnBackground"
+                    android:textColor="@color/text_primary"
                     android:fontFamily="@font/noto_sans_devanagari_ui_bold" />
             </LinearLayout>
         </LinearLayout>
@@ -218,7 +218,7 @@
                 android:layout_marginEnd="16dp"
                 android:src="@drawable/baseline_local_phone_24"
                 android:contentDescription="Phone icon"
-                app:tint="?attr/colorOnBackground" />
+                app:tint="@color/nav_item_icon" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -231,17 +231,17 @@
                     android:layout_height="wrap_content"
                     android:text="फोन नंबर"
                     android:textSize="14sp"
-                    android:textColor="?attr/colorOnBackground"
+                    android:textColor="@color/text_secondary"
                     android:fontFamily="@font/noto_sans_devanagari_ui_regular" />
 
                 <TextView
                     android:id="@+id/tvProfileMobile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="+91 9876543210"
+                    android:text="+91-XXXXXXXXXX"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:textColor="?attr/colorOnBackground"
+                    android:textColor="@color/text_primary"
                     android:fontFamily="@font/noto_sans_devanagari_ui_bold" />
             </LinearLayout>
         </LinearLayout>
@@ -260,7 +260,7 @@
                 android:layout_marginEnd="16dp"
                 android:src="@drawable/baseline_vpn_key_24"
                 android:contentDescription="ID icon"
-                app:tint="?attr/colorOnBackground" />
+                app:tint="@color/nav_item_icon" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -273,7 +273,7 @@
                     android:layout_height="wrap_content"
                     android:text="आयडी क्रमांक"
                     android:textSize="14sp"
-                    android:textColor="?attr/colorOnBackground"
+                    android:textColor="@color/text_secondary"
                     android:fontFamily="@font/noto_sans_devanagari_ui_regular" />
 
                 <TextView
@@ -283,7 +283,7 @@
                     android:text="JIV123456"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:textColor="?attr/colorOnBackground"
+                    android:textColor="@color/text_primary"
                     android:fontFamily="@font/noto_sans_devanagari_ui_bold" />
             </LinearLayout>
         </LinearLayout>

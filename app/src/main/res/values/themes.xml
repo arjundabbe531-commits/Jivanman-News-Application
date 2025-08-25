@@ -1,36 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Base.Theme.Jivanman" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+    <!-- Base Theme -->
+    <style name="Base.Theme.Jivanman" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorSecondary">@color/accent_blue</item>
+        <item name="colorPrimary">@color/my_primary</item>
+        <item name="colorOnPrimary">@color/on_primary</item>
+        <item name="android:colorBackground">@color/appBackground</item>
+        <item name="colorSurface">@color/colorSurface</item>
+        <item name="colorOnSurface">@color/colorOnSurface</item>
+        <item name="colorOnBackground">@color/text_primary</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="colorPrimaryVariant">@color/appBackground</item>
-        <item name="windowActionBar">false</item>
         <item name="android:windowLightStatusBar">true</item>
-        <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Base.Theme.Drawer.Navigation" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <!-- App Theme -->
+    <style name="Theme.Jivanman" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary -->
+        <item name="colorPrimary">@color/my_primary</item>
+        <item name="colorSecondary">@color/accent_blue</item>
+
+        <!-- Backgrounds -->
+        <item name="android:colorBackground">@color/appBackground</item>
+        <item name="colorSurface">@color/colorSurface</item>
+
+        <!-- Text -->
+        <item name="colorOnSurface">@color/colorOnSurface</item>
+        <item name="colorOnBackground">@color/text_primary</item>
+
+        <!-- Status bar -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <!-- Drawer Navigation Theme -->
+    <style name="Base.Theme.Drawer.Navigation" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
+    <!-- Action bar visible -->
     <style name="ShowActionBar" parent="Theme.Material3.DayNight" />
 
-    <style name="Theme.Jivanman" parent="Theme.Material3.DayNight.NoActionBar" />
-
+    <!-- Bottom Navigation Active Indicator -->
     <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
         <item name="android:color">@color/yellow</item>
     </style>
 
-    <style name="CircleImageView" parent="">
+    <!-- Circle ImageView -->
+    <style name="CircleImageView">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
     </style>
 
-    <style name="NoInternetTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <!-- No Internet Activity -->
+    <style name="NoInternetTheme" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
     </style>
-
-
 
 </resources>

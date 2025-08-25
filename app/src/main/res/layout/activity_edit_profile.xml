@@ -51,6 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp">
+
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/ivprofileImage"
                 android:layout_width="180dp"
@@ -98,9 +99,10 @@
                 android:drawableStart="@drawable/baseline_person_24"
                 android:drawablePadding="12dp"
                 android:padding="12dp"
+                android:drawableTint="@color/nav_item_icon"
                 android:inputType="textPersonName"
-                android:textColor="?android:textColorSecondary"
-                android:textColorHint="@color/black"
+                android:textColor="@color/text_primary"
+                android:textColorHint="@color/text_secondary"
                 android:fontFamily="@font/noto_sans_devanagari_ui_regular" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -126,8 +128,9 @@
                 android:drawablePadding="12dp"
                 android:padding="12dp"
                 android:inputType="phone"
-                android:textColor="?android:textColorSecondary"
-                android:textColorHint="@color/black" />
+                android:drawableTint="@color/nav_item_icon"
+                android:textColor="@color/text_primary"
+                android:textColorHint="@color/text_secondary" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -141,6 +144,7 @@
             app:boxCornerRadiusTopEnd="12dp"
             app:boxCornerRadiusBottomStart="12dp"
             app:boxCornerRadiusBottomEnd="12dp">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_email"
                 android:layout_width="match_parent"
@@ -151,12 +155,10 @@
                 android:drawablePadding="12dp"
                 android:padding="12dp"
                 android:inputType="textEmailAddress"
-                android:textColor="?android:textColorSecondary"
-                android:textColorHint="@color/black" />
-
+                android:drawableTint="@color/nav_item_icon"
+                android:textColor="@color/text_primary"
+                android:textColorHint="@color/text_secondary" />
         </com.google.android.material.textfield.TextInputLayout>
-
-
 
         <!-- Save Button -->
         <Button
@@ -167,10 +169,11 @@
             android:textSize="16dp"
             android:layout_marginTop="16dp"
             android:backgroundTint="@color/my_primary"
-            android:textColor="@android:color/white"
             android:textStyle="bold"
+            android:textColor="@color/white"
             android:fontFamily="@font/mukta_extralight" />
 
+        <!-- Delete Account -->
         <TextView
             android:id="@+id/tvDeleteAccount"
             android:layout_width="wrap_content"
@@ -187,7 +190,7 @@
             android:padding="8dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Delete Profile Option"
-            android:fontFamily="@font/noto_sans_devanagari_ui_bold"/>
+            android:fontFamily="@font/noto_sans_devanagari_ui_bold" />
 
     </LinearLayout>
 </ScrollView>

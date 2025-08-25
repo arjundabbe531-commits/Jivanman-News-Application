@@ -19,8 +19,9 @@ import com.arjundabbe.jivanman.database.DBHelper;
 
 public class MyProfileActivity extends AppCompatActivity {
 
+    // Views
     private ImageView ivprofileImage, btnBack;
-    private TextView tvProfileName, tvProfileEmail,tvProfileRole, tvProfileMobile, tvProfileId, editProfile;
+    private TextView tvProfileName, tvProfileEmail, tvProfileRole, tvProfileMobile, tvProfileId, editProfile;
 
     @SuppressLint({"Range", "MissingInflatedId"})
     @Override
@@ -28,7 +29,7 @@ public class MyProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
 
-        // View initialization
+        // Initialize views
         ivprofileImage = findViewById(R.id.ivprofileImage);
         btnBack = findViewById(R.id.btn_back);
         tvProfileName = findViewById(R.id.tvProfileName);
@@ -36,18 +37,17 @@ public class MyProfileActivity extends AppCompatActivity {
         tvProfileRole = findViewById(R.id.tvProfileRole);
         tvProfileMobile = findViewById(R.id.tvProfileMobile);
         tvProfileId = findViewById(R.id.tvProfileId);
-
         editProfile = findViewById(R.id.editProfile);
 
-        // Back button
+        // Back button click - close activity
         btnBack.setOnClickListener(v -> finish());
 
-        // Open edit profile screen
+        // Edit profile button click - open EditProfileActivity
         editProfile.setOnClickListener(v -> {
             startActivity(new android.content.Intent(MyProfileActivity.this, EditProfileActivity.class));
         });
 
-        // Load user data
+        // Load user data from SharedPreferences
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         String email = prefs.getString("email", null);
 
@@ -59,6 +59,7 @@ public class MyProfileActivity extends AppCompatActivity {
                 Log.d("MyProfile", "Cursor count: " + cursor.getCount());
             }
 
+            // Set user details in views
             if (cursor != null && cursor.moveToFirst()) {
                 tvProfileName.setText(cursor.getString(cursor.getColumnIndex("name")));
                 tvProfileEmail.setText(cursor.getString(cursor.getColumnIndex("email")));
@@ -70,8 +71,7 @@ public class MyProfileActivity extends AppCompatActivity {
             if (cursor != null) cursor.close();
         }
 
-
-        // Load profile image from SharedPreferences
+        // Load profile image from SharedPreferences (Base64 encoded)
         String encodedImage = prefs.getString("profile_image", null);
         if (encodedImage != null) {
             byte[] imageBytes = Base64.decode(encodedImage, Base64.DEFAULT);
@@ -79,19 +79,17 @@ public class MyProfileActivity extends AppCompatActivity {
             ivprofileImage.setImageBitmap(savedBitmap);
         }
 
-        // Appearance
+        // Profile image appearance
         ivprofileImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        ivprofileImage.setClipToOutline(true); // Use rounded/circular outline in XML
-
-
-
+        ivprofileImage.setClipToOutline(true); // rounded/circular outline in XML
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        loadUserData();  // Load fresh user data every time
+        loadUserData();  // Reload fresh user data every time activity resumes
     }
+
     @SuppressLint("Range")
     private void loadUserData() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -101,6 +99,7 @@ public class MyProfileActivity extends AppCompatActivity {
             DBHelper dbHelper = new DBHelper(this);
             Cursor cursor = dbHelper.getUserByEmail(email);
 
+            // Update views with latest user data from DB
             if (cursor != null && cursor.moveToFirst()) {
                 tvProfileName.setText(cursor.getString(cursor.getColumnIndex("name")));
                 tvProfileEmail.setText(cursor.getString(cursor.getColumnIndex("email")));
@@ -112,7 +111,7 @@ public class MyProfileActivity extends AppCompatActivity {
             if (cursor != null) cursor.close();
         }
 
-        // Reload profile image
+        // Reload profile image from SharedPreferences
         String encodedImage = prefs.getString("profile_image", null);
         if (encodedImage != null) {
             byte[] imageBytes = Base64.decode(encodedImage, Base64.DEFAULT);
@@ -120,5 +119,4 @@ public class MyProfileActivity extends AppCompatActivity {
             ivprofileImage.setImageBitmap(savedBitmap);
         }
     }
-
 }

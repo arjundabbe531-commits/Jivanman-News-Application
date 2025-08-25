@@ -28,7 +28,7 @@
         android:text="भारत 2025 मध्ये जगातील सर्वांत वेगाने वाढणारी अर्थव्यवस्था!"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:textColor="?android:textColorSecondary"
+        android:textColor="@color/news_headline_text"
         android:maxLines="2"
         android:ellipsize="end"
         app:layout_constraintStart_toEndOf="@id/articleImage"
@@ -46,7 +46,7 @@
         android:textSize="14sp"
         android:maxLines="2"
         android:ellipsize="end"
-        android:textColor="?android:textColorSecondary"
+        android:textColor="@color/news_description_text"
         app:layout_constraintStart_toEndOf="@id/articleImage"
         app:layout_constraintTop_toBottomOf="@id/articleTitle"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -60,7 +60,7 @@
         android:layout_marginStart="12dp"
         android:text="31 Jul 2025 . 06:07 PM"
         android:textSize="12sp"
-        android:textColor="?android:textColorSecondary"
+       android:textColor="@color/news_date_text"
         app:layout_constraintStart_toEndOf="@id/articleImage"
         app:layout_constraintTop_toBottomOf="@id/articleDescription" />
 

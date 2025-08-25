@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:background="@color/appBackground"
+    android:background="?attr/colorSurface"
     tools:context=".ui.fragments.MyCodeFragment">
 
     <LinearLayout
@@ -31,6 +31,7 @@
 
             <!-- Header -->
             <TextView
+                android:id="@+id/tvMyCodeFragment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="QR कोड"
@@ -48,6 +49,16 @@
                 android:contentDescription="User QR Code"
                 android:scaleType="fitCenter" />
             <!-- Barcode Image -->
+            <!-- Note -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="हा QR कोड खासगी आहे.\nफक्त विश्वासार्ह लोकांसह शेअर करा."
+                android:textSize="12sp"
+                android:textColor="@color/red"
+                android:gravity="center"
+                android:lineSpacingExtra="4dp"
+                android:layout_marginBottom="8dp" />
 
 
         </LinearLayout>

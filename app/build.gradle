@@ -37,48 +37,54 @@ android {
 
 dependencies {
     // Core Android libraries
-    implementation libs.appcompat // Backward compatibility
-    implementation libs.material // Material Design
-    implementation libs.activity // Activity support
-    implementation libs.constraintlayout // Constraint layout
+    implementation libs.appcompat // AndroidX AppCompat (backward compatibility)
+    implementation libs.material // Google Material Components
+    implementation libs.activity // AndroidX Activity support
+    implementation libs.constraintlayout // Layout system for complex UIs
 
     // Google & Firebase services
     implementation libs.play.services.maps // Google Maps SDK
-    implementation libs.firebase.messaging // Firebase messaging
+    implementation libs.firebase.messaging // Firebase Cloud Messaging (push notifications)
 
     // Media & Navigation
-    implementation libs.mediarouter // Media control
-    implementation libs.navigation.fragment // Jetpack Navigation
+    implementation libs.mediarouter // Media routing for external displays & devices
+    implementation libs.navigation.fragment // Jetpack Navigation (fragment navigation)
 
     // Testing
-    testImplementation libs.junit // Unit testing
-    androidTestImplementation libs.ext.junit // Android test extension
-    androidTestImplementation libs.espresso.core // UI testing (Espresso)
+    testImplementation libs.junit // JUnit framework (unit testing)
+    androidTestImplementation libs.ext.junit // JUnit extensions for Android
+    androidTestImplementation libs.espresso.core // Espresso (UI testing)
 
     // UI Components
-    implementation 'androidx.cardview:cardview:1.0.0' // Card views
-    implementation 'com.google.android.material:material:1.11.0' // Material Design UI
-    implementation 'com.github.denzcoskun:ImageSlideshow:0.1.2' // Image slider
+    implementation 'androidx.cardview:cardview:1.0.0' // CardView UI component
+    implementation 'com.google.android.material:material:1.11.0' // Latest Material Components
+    implementation 'com.github.denzcoskun:ImageSlideshow:0.1.2' // Image slider (auto & manual)
 
     // Networking
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0' // Retrofit (HTTP client)
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0' // JSON converter
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0' // Retrofit (HTTP networking)
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0' // Retrofit JSON converter (Gson)
 
     // ViewPager2
-    implementation 'androidx.viewpager2:viewpager2:1.0.0' // Swipable pages
+    implementation 'androidx.viewpager2:viewpager2:1.0.0' // Swipable pages (ViewPager2)
 
     // QR Code Scanner
-    implementation 'com.journeyapps:zxing-android-embedded:4.3.0' // QR code scanning
+    implementation 'com.journeyapps:zxing-android-embedded:4.3.0' // QR/Barcode scanning
 
     // Image Cropper
-    implementation 'com.github.CanHub:Android-Image-Cropper:4.3.2' // Image cropping
+    implementation 'com.github.CanHub:Android-Image-Cropper:4.3.2' // Crop & edit images
 
     // Image Loading
-    implementation 'com.github.bumptech.glide:glide:4.16.0' // Image loader
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0' // Glide compiler
+    implementation 'com.github.bumptech.glide:glide:4.16.0' // Glide (image loading/caching)
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0' // Glide compiler (annotations)
 
-    implementation 'com.github.KwabenBerko:News-API-Java:1.0.2'
+    // News API
+    implementation 'com.github.KwabenBerko:News-API-Java:1.0.2' // NewsAPI wrapper for Java
 
-    implementation 'com.airbnb.android:lottie:6.1.0'
+    // Animations
+    implementation 'com.airbnb.android:lottie:6.1.0' // Lottie (vector animations)
+
+    // Google Authentication
+    implementation "com.google.android.gms:play-services-auth:21.3.0" // Google Sign-In / Auth APIs
+    implementation 'com.facebook.android:facebook-login:latest.release'
 
 }

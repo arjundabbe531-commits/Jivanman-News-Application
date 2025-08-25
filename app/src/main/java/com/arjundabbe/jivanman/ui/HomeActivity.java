@@ -1,4 +1,5 @@
 package com.arjundabbe.jivanman.ui;
+import android.util.TypedValue;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -49,6 +50,7 @@ public class HomeActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.customToolbarHomeActivity);
         setSupportActionBar(toolbar);
+
 
         // Load default fragment
         loadFragment(new HomeFragment());

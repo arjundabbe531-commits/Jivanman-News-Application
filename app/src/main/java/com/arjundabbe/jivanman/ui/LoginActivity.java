@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.method.HideReturnsTransformationMethod;
@@ -15,10 +17,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
+import androidx.navigation.internal.Log;
 
 import com.arjundabbe.jivanman.R;
 import com.arjundabbe.jivanman.database.DBHelper;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -26,6 +38,15 @@ public class LoginActivity extends AppCompatActivity {
     EditText etLoginUsername, etLoginPassword;
     Button btnLoginLogin;
     TextView tvLoginRegisterNow, tvLoginForgetPassword;
+
+    //show option of gmail
+    GoogleSignInOptions googleSignInOptions;
+
+    //connect with google Account
+    GoogleSignInClient googleSignInClient;
+    SignInButton btnGoogleSignIn;
+
+
 
     @SuppressLint("Range")
     @Override
@@ -52,6 +73,25 @@ public class LoginActivity extends AppCompatActivity {
         tvLoginRegisterNow = findViewById(R.id.tvLoginRegisterNow);
         tvLoginForgetPassword = findViewById(R.id.tvLoginForgetPassword);
         ivTogglePassword = findViewById(R.id.ivTogglePassword);
+        btnGoogleSignIn = findViewById(R.id.btnGoogleSignIn);
+
+        // मोठा बटन (Google लोगो + मजकूर)
+        btnGoogleSignIn.setSize(SignInButton.SIZE_WIDE);
+
+        // Custom text + styling + font
+        for (int i = 0; i < btnGoogleSignIn.getChildCount(); i++) {
+            View v = btnGoogleSignIn.getChildAt(i);
+            if (v instanceof TextView) {
+                TextView textView = (TextView) v;
+                textView.setText("Google सह लॉगिन करा"); // मराठी मजकूर
+                textView.setTextSize(16);
+                textView.setTextColor(Color.BLACK);
+
+                // Font बदलणे (res/font/baloo_2.ttf वापर)
+                Typeface typeface = ResourcesCompat.getFont(this, R.font.mukta_extralight);
+                textView.setTypeface(typeface);
+            }
+        }
 
         // Toggle Password Visibility
         ivTogglePassword.setOnClickListener(v -> {
@@ -74,6 +114,17 @@ public class LoginActivity extends AppCompatActivity {
         tvLoginRegisterNow.setOnClickListener(v -> {
             Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
             startActivity(intent);
+        });
+
+        googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail().build();
+
+        googleSignInClient = GoogleSignIn.getClient(this,googleSignInOptions);
+        btnGoogleSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signIn();
+            }
         });
 
         // Login Logic
@@ -112,12 +163,16 @@ public class LoginActivity extends AppCompatActivity {
                 if (password.equals(dbPassword)) {
                     SharedPreferences.Editor editor = preferences.edit();
                     editor.putBoolean("isLogin", true);
+                    editor.putString("username", cursor.getString(cursor.getColumnIndex("username"))); // login id
+                    editor.putString("name", cursor.getString(cursor.getColumnIndex("name"))); // full name
+
                     editor.putString("email", cursor.getString(cursor.getColumnIndex("email")));
                     editor.putString("name", cursor.getString(cursor.getColumnIndex("name")));
                     editor.putString("mobile", cursor.getString(cursor.getColumnIndex("mobileno")));
                     editor.putString("role", cursor.getColumnIndex("role") != -1
                             ? cursor.getString(cursor.getColumnIndex("role"))
                             : "user");
+
                     editor.putString("jivanman_id", "JIV" + System.currentTimeMillis());
                     editor.putString("myQRValue", "https://wa.me/91" + cursor.getString(cursor.getColumnIndex("mobileno")));
                     editor.apply();
@@ -135,4 +190,36 @@ public class LoginActivity extends AppCompatActivity {
             if (cursor != null) cursor.close();
         });
     }
+    private void signIn() {
+        Intent intent = googleSignInClient.getSignInIntent();
+        startActivityForResult(intent, 999);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 999) {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            try {
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+
+                // Save login status
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putBoolean("isLogin", true);
+                editor.putString("email", account.getEmail());
+                editor.putString("name", account.getDisplayName());
+                editor.apply();
+
+                // Go to HomeActivity
+                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                finish();
+
+            } catch (ApiException e) {
+                Toast.makeText(this, "Google sign-in failed", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
 }

@@ -1,22 +1,19 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.Jivanman" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
-        <item name="android:windowTranslucentStatus">true</item>
+<resources>
+    <style name="Theme.Jivanman" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary -->
+        <item name="colorPrimary">@color/my_primary</item>
+        <item name="colorSecondary">@color/accent_blue</item>
+
+        <!-- Backgrounds -->
+        <item name="android:colorBackground">@color/appBackground</item>
+        <item name="colorSurface">@color/colorSurface</item>
+
+        <!-- Text -->
+        <item name="colorOnSurface">@color/colorOnSurface</item>
+        <item name="colorOnBackground">@color/text_primary</item>
+
+        <!-- Status bar -->
         <item name="android:statusBarColor">@android:color/transparent</item>
-            <!-- Customize your light theme here. -->
-            <item name="colorPrimary">@color/my_primary</item>
-            <item name="colorSecondary">@color/my_primary</item>
-            <item name="colorPrimaryVariant">@color/appBackground</item>
-            <item name="windowActionBar">false</item>
-<item name="android:windowLightStatusBar">true</item>
-
-            <item name="windowNoTitle">true</item>
-
-    </style>
-    <style name="Base.Theme.Drawer.Navigation" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-
-        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 </resources>

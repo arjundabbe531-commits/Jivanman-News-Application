@@ -2,7 +2,7 @@
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/appBackground"
+    android:background="?attr/colorSurface"
     android:fillViewport="true"
     android:paddingTop="32dp"
     android:paddingStart="16dp"
@@ -30,7 +30,7 @@
             android:layout_margin="8dp"
             android:elevation="4dp"
             android:layout_gravity="center"
-            android:backgroundTint="@color/white"
+            android:backgroundTint="?attr/colorSurface"
             android:clipToPadding="false"
             android:clipChildren="false"
             android:background="@drawable/bg_card_rounded">
@@ -74,7 +74,7 @@
                 android:text="~ अर्जुन शंकर डब्बे"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="@color/black"
+                android:textColor="?attr/colorOnSurface"
                 android:layout_marginBottom="4dp"
                 android:layout_marginTop="2dp"/>
 
@@ -92,7 +92,7 @@
             <View
                 android:layout_width="120dp"
                 android:layout_height="1dp"
-                android:background="@color/lightorange"
+                android:background="@color/divider"
                 android:layout_marginBottom="16dp" />
 
             <!-- Contact Info -->
@@ -102,7 +102,7 @@
                 android:layout_height="wrap_content"
                 android:text="ID: JIV2025M001"
                 android:textSize="14sp"
-                android:textColor="@color/black"
+                android:textColor="?attr/colorOnSurface"
                 android:layout_marginBottom="4dp" />
 
             <TextView
@@ -111,7 +111,7 @@
                 android:layout_height="wrap_content"
                 android:text="फोन: +९१-९८७६५४३२१०"
                 android:textSize="14sp"
-                android:textColor="@color/black"
+                android:textColor="?attr/colorOnSurface"
                 android:layout_marginBottom="4dp" />
 
             <TextView
@@ -120,7 +120,7 @@
                 android:layout_height="wrap_content"
                 android:text="ईमेल: arjun@example.com"
                 android:textSize="14sp"
-                android:textColor="@color/black"
+                android:textColor="?attr/colorOnSurface"
                 android:layout_marginBottom="16dp" />
 
             <!-- QR Label -->
@@ -130,7 +130,7 @@
                 android:text="QR कोड"
                 android:textStyle="bold"
                 android:textSize="16sp"
-                android:textColor="@color/my_primary"
+                android:textColor="?attr/colorPrimary"
                 android:layout_marginBottom="8dp" />
 
             <!-- QR Image -->

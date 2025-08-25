@@ -5,26 +5,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.SettingsActivity"
-    android:layout_marginTop="18dp">
+    android:background="@color/my_secoundary"
+    tools:context=".ui.SettingsActivity">
 
     <!-- AppBar with Toolbar -->
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/transparent"
         android:theme="@style/ThemeOverlay.Material3.Dark.ActionBar">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/topAppBar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/transparent"
             app:title="सेटिंग्ज"
             app:titleCentered="true"
             app:navigationIcon="@drawable/baseline_arrow_back_24"
             app:menu="@menu/menu_settings"
-            android:theme="@style/ThemeOverlay.Material3.Light"
-            android:textColor="?attr/colorOnBackground"
-            />
+            app:titleTextColor="?attr/colorOnSurface"
+            app:navigationIconTint="?attr/colorOnSurface" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <!-- Main Content -->
@@ -37,10 +39,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:divider="?android:attr/dividerHorizontal"
-            android:showDividers="middle"
-            android:dividerPadding="8dp">
+            android:orientation="vertical">
 
             <!-- Profile Card -->
             <androidx.cardview.widget.CardView
@@ -48,10 +47,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
-                app:cardElevation="4dp"
                 android:clickable="true"
                 android:focusable="true"
-                android:foreground="?attr/selectableItemBackground">
+                android:foreground="?attr/selectableItemBackground"
+                app:cardBackgroundColor="?attr/colorSurface"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="6dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -60,7 +61,7 @@
                     android:gravity="center_vertical"
                     android:padding="16dp">
 
-                    <!-- Profile Image with circular frame -->
+                    <!-- Profile Image -->
                     <ImageView
                         android:id="@+id/image_profile"
                         android:layout_width="90dp"
@@ -71,8 +72,6 @@
                         android:background="@drawable/circle_white_bg"
                         android:outlineProvider="background"
                         android:contentDescription="Profile photo" />
-
-
 
                     <!-- Name & Role -->
                     <LinearLayout
@@ -89,31 +88,30 @@
                             android:text="~ अर्जुन शंकर डब्बे"
                             android:textSize="18sp"
                             android:textStyle="bold"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/text_primary" />
 
                         <TextView
                             android:id="@+id/text_profile_role"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
                             android:text="भूमिका: संपादक"
                             android:textSize="16sp"
-                            android:layout_marginLeft="10dp"
-                            android:textColor="@color/purple" />
+                            android:textColor="@color/text_secondary" />
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
-
 
             <!-- Notifications -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
-                app:cardElevation="4dp"
                 android:clickable="true"
                 android:focusable="true"
-
-                app:cardCornerRadius="16dp">
+                app:cardBackgroundColor="?attr/colorSurface"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -126,22 +124,26 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:src="@drawable/baseline_notifications_24"
-                        android:contentDescription="नोटिफिकेशन" />
+                        android:contentDescription="नोटिफिकेशन"
+                        app:tint="@color/nav_item_icon" />
 
                     <TextView
-                        android:layout_marginStart="16dp"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:layout_marginStart="16dp"
                         android:text="नोटिफिकेशन"
                         android:textSize="16sp"
-                        android:textColor="@color/black" />
+                        android:textColor="?attr/colorOnSurface" />
 
-                    <Switch
+                    <androidx.appcompat.widget.SwitchCompat
                         android:id="@+id/switch_notifications"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical" />
+                        android:layout_gravity="center_vertical"
+                        app:thumbTint="#ED835A"
+                        app:trackTint="@color/accent_green"
+                        app:trackTintMode="src_atop" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -150,10 +152,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
-                app:cardElevation="4dp"
                 android:clickable="true"
                 android:focusable="true"
-                app:cardCornerRadius="16dp">
+                app:cardBackgroundColor="?attr/colorSurface"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -167,22 +170,26 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:src="@drawable/baseline_dark_mode_24"
-                        android:contentDescription="थीम" />
+                        android:contentDescription="थीम"
+                        app:tint="@color/nav_item_icon" />
 
                     <TextView
-                        android:layout_marginStart="16dp"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:layout_marginStart="16dp"
                         android:text="डार्क मोड"
                         android:textSize="16sp"
-                        android:textColor="@color/black" />
+                        android:textColor="?attr/colorOnSurface" />
 
-                    <Switch
+                    <androidx.appcompat.widget.SwitchCompat
                         android:id="@+id/switch_theme"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical" />
+                        android:layout_gravity="center_vertical"
+                        app:thumbTint="#ED835A"
+                        app:trackTint="@color/accent_green"
+                        app:trackTintMode="src_atop" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -192,11 +199,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
-                app:cardElevation="4dp"
-                app:cardCornerRadius="16dp"
                 android:clickable="true"
                 android:focusable="true"
-                android:foreground="?android:attr/selectableItemBackground">
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardBackgroundColor="?attr/colorSurface"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -209,15 +217,16 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:src="@drawable/baseline_qr_code_scanner_24"
-                        android:contentDescription="स्कॅनर" />
+                        android:contentDescription="स्कॅनर"
+                        app:tint="@color/nav_item_icon" />
 
                     <TextView
-                        android:layout_marginStart="16dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
                         android:text="QR स्कॅनर उघडा"
                         android:textSize="16sp"
-                        android:textColor="@color/black" />
+                        android:textColor="?attr/colorOnSurface" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -227,11 +236,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
-                app:cardElevation="4dp"
-                app:cardCornerRadius="16dp"
                 android:clickable="true"
                 android:focusable="true"
-                android:foreground="?android:attr/selectableItemBackground">
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardBackgroundColor="?attr/colorSurface"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -244,63 +254,31 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:src="@drawable/baseline_info_24"
-                        android:contentDescription="स्कॅनर" />
+                        android:contentDescription="आमच्या विषयी"
+                        app:tint="@color/nav_item_icon" />
 
                     <TextView
-                        android:layout_marginStart="16dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
                         android:text="आमच्या विषयी"
                         android:textSize="16sp"
-                        android:textColor="@color/black" />
+                        android:textColor="?attr/colorOnSurface" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- Contact us -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_contactus"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:cardElevation="4dp"
-                app:cardCornerRadius="16dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?android:attr/selectableItemBackground">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:padding="16dp">
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/baseline_local_phone_24"
-                        android:contentDescription="स्कॅनर" />
-
-                    <TextView
-                        android:layout_marginStart="16dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Contact Us"
-                        android:textSize="16sp"
-                        android:textColor="@color/black" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
             <!-- Logout -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_logout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
-                app:cardElevation="4dp"
-                app:cardCornerRadius="16dp"
                 android:clickable="true"
                 android:focusable="true"
-                android:foreground="?android:attr/selectableItemBackground">
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardBackgroundColor="?attr/colorSurface"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -313,16 +291,16 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:src="@drawable/baseline_logout_24"
-                        app:tint="@android:color/holo_red_dark"
-                        android:contentDescription="लॉगआउट" />
+                        android:contentDescription="लॉगआउट"
+                        app:tint="@color/error_red" />
 
                     <TextView
-                        android:layout_marginStart="16dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
                         android:text="लॉगआउट करा"
                         android:textSize="16sp"
-                        android:textColor="@android:color/holo_red_light" />
+                        android:textColor="@color/error_red" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 

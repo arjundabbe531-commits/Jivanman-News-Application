@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EAF0FF"
+    android:background="?attr/colorSurface"
     tools:context=".ui.LoginActivity">
 
     <LinearLayout
@@ -32,7 +33,7 @@
             android:textSize="32sp"
             android:textStyle="bold"
             android:fontFamily="@font/baloo_2"
-            android:textColor="@color/black"
+            android:textColor="@color/text_primary"
             android:layout_marginTop="16dp"
             android:gravity="center" />
 
@@ -48,8 +49,10 @@
             android:drawablePadding="12dp"
             android:padding="12dp"
             android:background="@drawable/rounded_edittext"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black" />
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_secondary"
+            android:drawableTint="?attr/colorOnSurface"
+            app:tint="?attr/colorOnSurface" />
 
         <!-- Mobile -->
         <EditText
@@ -63,8 +66,10 @@
             android:drawablePadding="12dp"
             android:padding="12dp"
             android:background="@drawable/rounded_edittext"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black" />
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_secondary"
+            android:drawableTint="?attr/colorOnSurface"
+            app:tint="?attr/colorOnSurface" />
 
         <!-- Email -->
         <EditText
@@ -78,8 +83,10 @@
             android:drawablePadding="12dp"
             android:padding="12dp"
             android:background="@drawable/rounded_edittext"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black" />
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_secondary"
+            android:drawableTint="?attr/colorOnSurface"
+            app:tint="?attr/colorOnSurface" />
 
         <!-- Password -->
         <RelativeLayout
@@ -97,8 +104,10 @@
                 android:drawableStart="@drawable/lock_black"
                 android:drawablePadding="12dp"
                 android:background="@drawable/rounded_edittext"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black" />
+                android:textColor="@color/text_primary"
+                android:textColorHint="@color/text_secondary"
+                android:drawableTint="?attr/colorOnSurface"
+                app:tint="?attr/colorOnSurface" />
 
             <ImageView
                 android:id="@+id/ivToggleRegistrationPassword1"
@@ -127,8 +136,10 @@
                 android:drawableStart="@drawable/lock_black"
                 android:drawablePadding="12dp"
                 android:background="@drawable/rounded_edittext"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black" />
+                android:textColor="@color/text_primary"
+                android:textColorHint="@color/text_secondary"
+                android:drawableTint="?attr/colorOnSurface"
+                app:tint="?attr/colorOnSurface" />
 
             <ImageView
                 android:id="@+id/ivToggleRegistrationPassword2"
@@ -141,7 +152,6 @@
                 android:contentDescription="Toggle Confirm Password Visibility" />
         </RelativeLayout>
 
-
         <!-- Role Selection -->
         <RadioGroup
             android:id="@+id/rgRoles"
@@ -150,27 +160,29 @@
             android:orientation="horizontal"
             android:layout_marginTop="8dp">
 
-
-
             <RadioButton
                 android:id="@+id/rbReader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="वाचक"
-                android:buttonTint="@color/my_primary"
-                android:textColor="@color/black"
+                android:textColor="@color/text_primary"
+                android:textColorHint="@color/text_secondary"
                 android:textStyle="bold"
-                android:padding="8dp"/>
+                android:padding="8dp"
+                android:buttonTint="@color/my_primary"
+                app:tint="?attr/colorOnSurface" />
 
             <RadioButton
                 android:id="@+id/rbJournalist"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="पत्रकार"
-                android:buttonTint="@color/my_primary"
-                android:textColor="@color/black"
+                android:textColor="@color/text_primary"
+                android:textColorHint="@color/text_secondary"
                 android:textStyle="bold"
-                android:padding="8dp"/>
+                android:padding="8dp"
+                android:buttonTint="@color/my_primary"
+                app:tint="?attr/colorOnSurface" />
         </RadioGroup>
 
         <!-- Register Button -->
@@ -180,7 +192,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="12dp"
-            android:backgroundTint="@color/my_primary"
+            android:backgroundTint="?attr/colorPrimary"
             android:text="नोंदणी करा"
             android:textColor="@color/white"
             android:textSize="18sp"
@@ -195,8 +207,9 @@
             android:layout_height="wrap_content"
             android:text="आधीपासूनच खातं आहे? लॅगिन करा"
             android:textSize="16sp"
-            android:textColor="@color/lightblue"
+            android:textColor="@color/accent_blue"
             android:layout_marginTop="8dp"
             android:gravity="center" />
+
     </LinearLayout>
 </ScrollView>
