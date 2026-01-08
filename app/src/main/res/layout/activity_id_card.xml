@@ -22,6 +22,7 @@
 
         <!-- ID Card Container -->
         <LinearLayout
+            android:id="@+id/idCardLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -152,6 +153,33 @@
                 android:gravity="center"
                 android:lineSpacingExtra="4dp"
                 android:layout_marginBottom="8dp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="16dp">
+
+            <ImageView
+                android:id="@+id/btnDownload"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Download JPG"
+                android:src="@drawable/baseline_download_24"
+                android:background="@drawable/circle_bg"
+                android:padding="10dp"
+                android:layout_marginEnd="16dp" />
+
+            <ImageView
+                android:id="@+id/btnShare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Share"
+                android:src="@drawable/baseline_share_24"
+                android:background="@drawable/circle_bg"
+                android:padding="10dp" />
 
         </LinearLayout>
 

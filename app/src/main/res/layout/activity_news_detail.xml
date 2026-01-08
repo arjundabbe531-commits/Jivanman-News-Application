@@ -23,6 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="4dp"
+            android:layout_gravity="center_vertical"
             app:tint="?attr/colorOnBackground"
             app:itemIconTint="?attr/colorOnPrimary"
             app:itemTextColor="?attr/colorOnPrimary"
@@ -42,7 +43,7 @@
                 android:id="@+id/appName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="जीवनमान"
+                android:text="जिवनमान"
                 android:textColor="#6A040F"
                 android:textSize="40sp"
                 android:textStyle="bold"
@@ -91,9 +92,10 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textSize="20sp"
+                android:fontFamily="@font/noto_sans_devanagari"
                 android:layout_marginBottom="10dp"
                 android:textColor="@color/news_headline_text"
-                android:text="NEWS HEADLINE" />
+                android:text="ऑनलाइन गेमिंग कायदा २०२५ — भारतात ई-स्पोर्ट्स ओळख आणि बेकायदा बेटिंगवर बंदी" />
 
             <!-- Article Description -->
             <TextView
@@ -101,7 +103,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:text="NEWS DESCRIPTION HERE,"
+                android:fontFamily="@font/poppins"
+                android:text="२०२५ मध्ये पारित झालेल्या “Promotion and Regulation of Online Gaming Act” अंतर्गत ऑनलाइन गेमिंग, ई-स्पोर्ट्सला कायदेशीर ओळख देण्यात आली आहे आणि खाते पैशावर आधारित गेमिंगवर स्पष्ट निर्बंध आहेत."
                 android:layout_marginBottom="12dp" />
 
             <!-- Written by -->
@@ -112,6 +115,7 @@
                 android:text="WRITTEN BY: अर्जुन डब्बे"
                 android:textColor="@color/news_writer_text"
                 android:textSize="14sp"
+                android:fontFamily="@font/tiro_devanagari_marathi_regular"
                 android:layout_marginBottom="2dp" />
 
             <!-- Article Date -->
@@ -122,6 +126,7 @@
                 android:text="UPDATED : ५ ऑगस्ट २०२५, सकाळी ८:४७"
                 android:textColor="@color/news_date_text"
                 android:textSize="14sp"
+                android:fontFamily="@font/tiro_devanagari_marathi_regular"
                 android:layout_marginBottom="12dp" />
 
             <!-- Action Buttons -->

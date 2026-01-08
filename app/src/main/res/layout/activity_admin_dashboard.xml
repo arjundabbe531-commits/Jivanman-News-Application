@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/my_secoundary"
+    tools:context=".ui.AdminDashboardActivity">
+
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="18dp">
+
+    <!-- HEADER CARD -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:backgroundTint="@color/white"
+        app:cardCornerRadius="26dp"
+        app:cardElevation="12dp"
+        app:strokeWidth="1dp"
+        app:strokeColor="@color/grey_font">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="20dp"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tvAdminName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="प्रशासक पॅनेल"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/noto_sans_devanagari"
+                android:textColor="@color/text_primary"/>
+
+            <TextView
+                android:id="@+id/tvAdminEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="admin@jivanman.com"
+                android:textSize="14sp"
+                android:textColor="@color/text_secondary"/>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/ivLogout"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="8dp"
+            android:src="@drawable/baseline_logout_24"
+            android:background="@drawable/circle_button_bg"/>
+    </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <!-- MENU GRID -->
+        <!-- MENU GRID -->
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:layout_marginTop="28dp"
+            android:useDefaultMargins="true">
+
+            <!-- ADD NEWS -->
+            <LinearLayout
+                android:id="@+id/cardAddNews"
+                android:layout_width="0dp"
+                android:layout_height="160dp"
+                android:layout_columnWeight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/bg_dashboard_card"
+                android:foreground="?attr/selectableItemBackground"
+                android:layout_margin="8dp">
+
+                <ImageView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:src="@drawable/baseline_note_add_24"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="नवीन बातमी"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/mukta_extralight"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp"/>
+            </LinearLayout>
+
+            <!-- MANAGE NEWS -->
+            <LinearLayout
+                android:id="@+id/cardManageNews"
+                android:layout_width="0dp"
+                android:layout_height="160dp"
+                android:layout_columnWeight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/bg_dashboard_card"
+                android:foreground="?attr/selectableItemBackground"
+                android:layout_margin="8dp">
+
+                <ImageView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:src="@drawable/baseline_edit_note_24"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="बातम्या नियंत्रण"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/mukta_extralight"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp"/>
+            </LinearLayout>
+
+            <!-- REPORTERS -->
+            <LinearLayout
+                android:id="@+id/cardReporters"
+                android:layout_width="0dp"
+                android:layout_height="160dp"
+                android:layout_columnWeight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/bg_dashboard_card"
+                android:foreground="?attr/selectableItemBackground"
+                android:layout_margin="8dp">
+
+                <ImageView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:src="@drawable/baseline_supervisor_account_24"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="वार्ताहर"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/mukta_extralight"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp"/>
+            </LinearLayout>
+
+            <!-- ANALYTICS -->
+            <LinearLayout
+                android:id="@+id/cardAnalytics"
+                android:layout_width="0dp"
+                android:layout_height="160dp"
+                android:layout_columnWeight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/bg_dashboard_card"
+                android:foreground="?attr/selectableItemBackground"
+                android:layout_margin="8dp">
+
+                <ImageView
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:src="@drawable/baseline_bar_chart_24"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="आकडेवारी"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/mukta_extralight"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp"/>
+            </LinearLayout>
+
+        </GridLayout>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

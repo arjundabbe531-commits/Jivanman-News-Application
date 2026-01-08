@@ -1,116 +1,227 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    AndroidManifest.xml
+
+    Central configuration file for the Jivanman (NewsApplication)
+    Defines:
+    - App package
+    - Permissions
+    - Hardware features
+    - Activities
+    - Services
+    - Providers
+    - App-level metadata
+-->
+
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.arjundabbe.jivanman">
-    <!-- Permissions -->
+
+    <!-- ============================= -->
+    <!-- Hardware Features (Optional) -->
+    <!-- ============================= -->
+
+    <!-- Camera is optional (used for ID capture, image upload, scan-to-text) -->
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
+
+    <!-- Telephony is optional (used for OTP, SMS features) -->
     <uses-feature
         android:name="android.hardware.telephony"
         android:required="false" />
 
+    <!-- ================= -->
+    <!-- App Permissions -->
+    <!-- ================= -->
+
+    <!-- Internet access (Firebase, APIs, news content) -->
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Bluetooth (possibly used for future extensions / device connectivity) -->
     <uses-permission android:name="android.permission.BLUETOOTH" />
+
+    <!-- Location permissions (news location, reporter location) -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <!-- Camera access (news image capture, ID capture, text scan) -->
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.CAMERA" />
+
+    <!-- Storage permissions (image upload, downloads, cache) -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <!-- SMS related permissions (OTP verification) -->
     <uses-permission android:name="android.permission.MANAGE_DEVICE_POLICY_SMS" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
 
+    <!-- ===================== -->
+    <!-- Application Section -->
+    <!-- ===================== -->
+
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/jivanman_name"
-        android:label="जीवनमान"
+        android:icon="@drawable/jivanman_logo"
+        android:label="जिवनमान"
         android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.Jivanman"
         tools:targetApi="31">
+
+        <!-- ================= -->
+        <!-- Admin & News UI -->
+        <!-- ================= -->
+
+        <activity android:name=".ui.TrashNewsActivity" android:exported="false" />
+        <activity android:name=".ui.ManageNewsActivity" android:exported="false" />
+        <activity android:name=".ui.ReportersActivity" android:exported="false" />
+        <activity android:name=".ui.AnalyticsActivity" android:exported="false" />
+        <activity android:name=".ui.AddNewsActivity" android:exported="false" />
+        <activity android:name=".ui.AdminDashboardActivity" android:exported="false" />
+
+        <!-- ================= -->
+        <!-- Authentication -->
+        <!-- ================= -->
+
+        <activity android:name=".ui.LoginActivity" android:exported="false" />
+        <activity android:name=".ui.RegistrationActivity" android:exported="false" />
+        <activity android:name=".ui.OtpVerifyActivity" android:exported="false" />
+        <activity android:name=".ui.ForgetPasswordActivity" android:exported="false" />
+
+        <!-- Duplicate declaration retained intentionally -->
         <activity
-            android:name=".ui.ContactUsActivity"
-            android:exported="false" />
+            android:name=".ui.ForgetPasswordActivity"
+            android:exported="false"
+            tools:ignore="DuplicateActivity" />
+
+        <activity android:name=".ui.ResetPasswordActivity" android:exported="false" />
+
+        <!-- ================= -->
+        <!-- User Profile -->
+        <!-- ================= -->
+
+        <activity android:name=".ui.MyProfileActivity" android:exported="false" />
+        <activity android:name=".ui.EditProfileActivity" android:exported="false" />
+        <activity android:name=".ui.IdCardActivity" android:exported="false" />
+
+        <!-- ================= -->
+        <!-- Utility & Extras -->
+        <!-- ================= -->
+
+        <activity android:name=".ui.SearchActivity" android:exported="false" />
+        <activity android:name=".ui.TextScanActivity" android:exported="false" />
+        <activity android:name=".ui.MyLocationActivity"
+            android:exported="false"
+            android:label="@string/title_activity_my_location" />
+        <activity android:name=".ui.SettingsActivity" android:exported="false" />
         <activity
             android:name=".ui.AboutUsActivity"
             android:exported="false"
             android:label="आमच्याबद्दल" />
+
+        <!-- ================= -->
+        <!-- News Display -->
+        <!-- ================= -->
+
+        <activity android:name=".ui.NewsDetailActivity" android:exported="false" />
+
+        <!-- ================= -->
+        <!-- Network Handling -->
+        <!-- ================= -->
+
         <activity
             android:name=".ui.NoInternetActivity"
             android:excludeFromRecents="true"
             android:noHistory="true"
             android:theme="@style/NoInternetTheme" />
-        <activity
-            android:name=".ui.EditProfileActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.NewsDetailActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.MyProfileActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.ForgetPasswordActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.ForgetPasswordActivity"
-            android:exported="false"
-            tools:ignore="DuplicateActivity" />
-        <activity
-            android:name=".ui.PortraitCaptureActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.IdCardActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.MyQrActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.SettingsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.MyLocationActivity"
-            android:exported="false"
-            android:label="@string/title_activity_my_location" />
-        <activity
-            android:name=".ui.RegistrationActivity"
-            android:exported="false" />
+
+        <!-- ================= -->
+        <!-- Home & Splash -->
+        <!-- ================= -->
+
         <activity
             android:name=".ui.HomeActivity"
             android:exported="false"
             android:theme="@style/Base.Theme.Jivanman" />
-        <activity
-            android:name=".ui.LoginActivity"
-            android:exported="false" />
+
+        <!-- Launcher Activity -->
         <activity
             android:name=".ui.SplashActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
+        <!-- ================= -->
+        <!-- File Providers -->
+        <!-- ================= -->
+
+        <!-- Used for sharing images/files securely -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <!-- Duplicate provider retained intentionally -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <!-- ================= -->
+        <!-- Firebase Service -->
+        <!-- ================= -->
+
+        <!-- Handles push notifications -->
         <service
             android:name=".ui.MyFirebaseMessagingService"
             android:exported="false">
+
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 
+        <!-- ================= -->
+        <!-- App Meta-Data -->
+        <!-- ================= -->
+
+        <!-- Google Maps API Key -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDXKrtmMVOvzYhO9YDMYIdILpIThd8WW3w" />
+
+        <!-- Preloaded custom fonts -->
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
     </application>
 
 </manifest>

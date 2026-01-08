@@ -5,117 +5,122 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.arjundabbe.jivanman.R;
 import com.arjundabbe.jivanman.models.SavedArticle;
-import com.arjundabbe.jivanman.util.SavedPrefsManager;
+import com.arjundabbe.jivanman.ui.NewsDetailActivity;
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * RecyclerView Adapter for displaying saved/bookmarked articles
+ * Supports:
+ * - Opening full news on item click
+ * - Delete via button click
+ * - Share via button click
+ */
 public class SavedArticleAdapter extends RecyclerView.Adapter<SavedArticleAdapter.ViewHolder> {
 
-    private final Context context; // Application or activity context
-    private final List<SavedArticle> articleList; // List of saved articles to show in RecyclerView
+    // Interface for item actions (delete)
+    public interface OnItemActionListener {
+        void onDelete(SavedArticle article, int position);
+    }
 
-    // Constructor: called when adapter is created
-    public SavedArticleAdapter(Context context, List<SavedArticle> articleList) {
+    private final Context context;
+    private final List<SavedArticle> savedList;
+    private final OnItemActionListener listener;
+
+    public SavedArticleAdapter(Context context, List<SavedArticle> savedList, OnItemActionListener listener) {
         this.context = context;
-        this.articleList = articleList;
+        this.savedList = savedList;
+        this.listener = listener;
     }
 
-    // ViewHolder class holds views for each RecyclerView item
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView title;               // TextView for article title
-        ImageView image;              // ImageView for article image
-        ImageView shareButton;       // ImageView acting as share button
-        ImageView removeButton;      // ImageView acting as remove/delete button
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-
-            // Bind views using their ID from the XML layout
-            title = itemView.findViewById(R.id.articleTitle);
-            image = itemView.findViewById(R.id.articleImage);
-            shareButton = itemView.findViewById(R.id.shareButton);
-            removeButton = itemView.findViewById(R.id.removeButton);
-        }
-    }
-
-
-    // Called to create new ViewHolder object for each item
+    @NonNull
     @Override
-    public SavedArticleAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        // Inflate the layout XML for individual saved article item
-        View view = LayoutInflater.from(context).inflate(R.layout.item_saved_article, parent, false);
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context)
+                .inflate(R.layout.item_saved_article, parent, false);
         return new ViewHolder(view);
     }
 
-    // Called to bind data to the views (title, image, buttons) for each item
     @Override
-    public void onBindViewHolder(SavedArticleAdapter.ViewHolder holder, int position) {
-        // Get the article object at the current position
-        SavedArticle article = articleList.get(position);
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        // Set the article title to the TextView
+        SavedArticle article = savedList.get(position);
+
+        // Set title
         holder.title.setText(article.getTitle());
 
-        // Load image from URL using Glide library
-        Glide.with(context).load(article.getImageUrl()).into(holder.image);
+        // Load image with Glide
+        Glide.with(context)
+                .load(article.getImageUrl())
+                .placeholder(R.drawable.placeholder)
+                .error(R.drawable.placeholder)
+                .into(holder.image);
 
-        // ===== SHARE BUTTON FUNCTIONALITY =====
-        holder.shareButton.setOnClickListener(v -> {
-            // Create the text to be shared in Marathi
-            String shareText = "लेख: " + article.getTitle() + "\n\n" +
-                    article.getDescription() + "\n\n" +
-                    "अधिक माहितीसाठी भेट द्या: www.jivanman.in";
-
-            // Create an intent to share text
-            Intent shareIntent = new Intent(Intent.ACTION_SEND);
-            shareIntent.setType("text/plain");
-            shareIntent.putExtra(Intent.EXTRA_SUBJECT, article.getTitle());
-            shareIntent.putExtra(Intent.EXTRA_TEXT, shareText);
-
-            // Launch chooser to let user pick app for sharing
-            context.startActivity(Intent.createChooser(shareIntent, "कशाद्वारे शेअर करायचे ते निवडा"));
-        });
-
-        // ===== REMOVE BUTTON FUNCTIONALITY =====
-        holder.removeButton.setOnClickListener(v -> {
-            int removedPosition = holder.getAdapterPosition(); // Get position of item to be removed
-
-            // Check to avoid invalid positions
-            if (removedPosition != RecyclerView.NO_POSITION) {
-                // Remove from SharedPreferences using utility class
-                SavedPrefsManager.removeArticle(context, article);
-
-                // Remove from local list and notify adapter
-                articleList.remove(removedPosition);
-                notifyItemRemoved(removedPosition);
-
-                // Show confirmation toast in Marathi
-                Toast.makeText(context, "लेख यादीतून काढण्यात आला आहे", Toast.LENGTH_SHORT).show();
-            }
-        });
+        // 👉 Open NewsDetailActivity on card click
         holder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(context, com.arjundabbe.jivanman.ui.NewsDetailActivity.class);
+            Intent intent = new Intent(context, NewsDetailActivity.class);
+
+            intent.putExtra("newsId", article.getNewsId());
             intent.putExtra("title", article.getTitle());
             intent.putExtra("description", article.getDescription());
             intent.putExtra("imageUrl", article.getImageUrl());
-            intent.putExtra("date", article.getDate()); // If date is available in SavedArticle model
+            intent.putExtra("date", article.getDate());
+            intent.putExtra("reporter", article.getReporter());
+            intent.putStringArrayListExtra("category",
+                    new ArrayList<>(article.getCategory()));
+
             context.startActivity(intent);
         });
 
+        // ❌ Remove/Delete button
+        holder.removeButton.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onDelete(article, holder.getAdapterPosition());
+            }
+        });
+
+        // Share button
+        holder.shareButton.setOnClickListener(v -> {
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.setType("text/plain");
+            shareIntent.putExtra(Intent.EXTRA_TEXT,
+                    article.getTitle() + "\n\n" + article.getDescription());
+            context.startActivity(Intent.createChooser(shareIntent, "Share via"));
+        });
     }
 
-    // Total number of items in the list
     @Override
     public int getItemCount() {
-        return articleList.size();
+        return savedList.size();
+    }
+
+    /**
+     * ViewHolder for saved article item
+     */
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+
+        ImageView image;
+        TextView title;
+        ImageButton removeButton, shareButton;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            image = itemView.findViewById(R.id.articleImage);
+            title = itemView.findViewById(R.id.articleTitle);
+            removeButton = itemView.findViewById(R.id.removeButton);
+            shareButton = itemView.findViewById(R.id.shareButton);
+        }
     }
 }

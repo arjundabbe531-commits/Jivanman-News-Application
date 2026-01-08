@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/top_menu_Search"
+        android:title="शोधा"
+        android:icon="@drawable/baseline_search_24"
+        app:showAsAction="always"
+        />
     <item
         android:id="@+id/top_menu_map"
         android:title="नकाशा"
@@ -17,7 +24,12 @@
         android:id="@+id/top_menu_idcard"
         app:showAsAction="never"
         android:icon="@drawable/baseline_info_24"
-        android:title="जीवनमान ओळखपत्र"/>
+        android:title="जिवनमान ओळखपत्र"/>
+    <item
+        android:id="@+id/top_menu_scantext"
+        app:showAsAction="never"
+        android:title="Scan Text"/>
+
     <item
         android:id="@+id/top_menu_settings"
         android:icon="@drawable/baseline_settings_24"

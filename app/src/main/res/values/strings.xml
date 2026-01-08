@@ -6,5 +6,12 @@
     <string name="share_article">Share article</string>
     <string name="remove_saved">Remove from saved</string>
     <string name="article_image_desc">Image related to article</string>
+    <string-array name="news_categories">
+        <item>राजकारण</item>
+        <item>अर्थव्यवस्था</item>
+        <item>क्रीडा</item>
+        <item>मनोरंजन</item>
+        <item>तंत्रज्ञान</item>
+    </string-array>
 
 </resources>

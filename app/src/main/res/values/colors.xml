@@ -1,64 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Existing defined colors (already present) -->
+
+    <!-- ================================================= -->
+    <!-- BASIC COLORS -->
+    <!-- ================================================= -->
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
 
-    <!-- Brand -->
-    <color name="jivanman_name">#6A040F</color>
-    <color name="my_primary_dark">#C75F3A</color>
-    <color name="my_secondary">#FFF3E6</color>
-    <color name="splash_bg">#EAF0FF</color>
-    <color name="my_primary">#ED835A</color> <!-- bright orange -->
-    <color name="on_primary">#000000</color> <!-- black text/icons -->
 
-    <!-- Aliases for backward compatibility -->
+    <!-- ================================================= -->
+    <!-- BRAND COLORS (Jivanman Identity) -->
+    <!-- ================================================= -->
+
+    <!-- App logo / brand name color -->
+    <color name="jivanman_name">#6A040F</color>
+
+    <!-- Primary theme color (main buttons, highlights) -->
+    <color name="my_primary">#ED835A</color> <!-- Bright orange -->
+
+    <!-- Darker shade of primary (toolbar/status emphasis) -->
+    <color name="my_primary_dark">#C75F3A</color>
+
+    <!-- Secondary color (backgrounds, cards) -->
+    <color name="my_secondary">#FFF3E6</color>
+
+    <!-- Splash screen background -->
+    <color name="splash_bg">#EAF0FF</color>
+
+    <!-- Text/icons displayed on primary color -->
+    <color name="on_primary">#000000</color>
+
+
+    <!-- ================================================= -->
+    <!-- ALIASES (Backward Compatibility & Fixes) -->
+    <!-- ================================================= -->
+
+    <!-- Old orange reference -->
     <color name="orange">@color/my_primary</color>
+
+    <!-- Material legacy colors -->
     <color name="purple_500">#6200EE</color>
     <color name="teal_700">#018786</color>
-    <color name="my_secoundary">@color/my_secondary</color> <!-- typo fixed alias -->
 
-    <!-- Backgrounds -->
+    <!-- Typo-fixed alias for older layouts -->
+    <color name="my_secoundary">@color/my_secondary</color>
+
+
+    <!-- ================================================= -->
+    <!-- BACKGROUND & SURFACE COLORS -->
+    <!-- ================================================= -->
+
+    <!-- App main background -->
     <color name="appBackground">#C1D7E1</color>
+
+    <!-- Card / surface background -->
     <color name="colorSurface">#FFFFFF</color>
+
+    <!-- Text/icons on surface -->
     <color name="colorOnSurface">#212121</color>
 
-    <!-- Text -->
+
+    <!-- ================================================= -->
+    <!-- TEXT COLORS -->
+    <!-- ================================================= -->
+
+    <!-- Primary readable text -->
     <color name="text_primary">#212121</color>
+
+    <!-- Secondary / helper text -->
     <color name="text_secondary">#757575</color>
+
+    <!-- Highlighted text (profile edit, links) -->
     <color name="edit_profile_text">@color/my_primary</color>
 
-    <!-- Accents -->
+
+    <!-- ================================================= -->
+    <!-- ACCENT COLORS -->
+    <!-- ================================================= -->
     <color name="accent_blue">#3D3489</color>
     <color name="accent_purple">#8E24AA</color>
     <color name="accent_green">#4CAF50</color>
     <color name="accent_red">#E53935</color>
     <color name="accent_yellow">#FFB300</color>
+
+    <!-- Alias -->
     <color name="yellow">#FFB300</color>
 
-    <!-- Utility -->
+
+    <!-- ================================================= -->
+    <!-- UTILITY / STATUS COLORS -->
+    <!-- ================================================= -->
+
+    <!-- Success messages -->
     <color name="success">#4CAF50</color>
+
+    <!-- Informational messages -->
     <color name="info">#2196F3</color>
+
+    <!-- Warning messages -->
     <color name="warning">#FFC107</color>
 
-    <!-- Legacy aliases -->
+
+    <!-- ================================================= -->
+    <!-- LEGACY COLORS (Older UI references) -->
+    <!-- ================================================= -->
     <color name="purple">#9C27B0</color>
     <color name="lightorange">#FFCC80</color>
     <color name="red">#F44336</color>
     <color name="lightblue">#81D4FA</color>
-    <color name="nav_item_icon">#000000</color> <!-- black for light mode -->
 
-    <!-- Button backgrounds -->
-    <color name="buttns_bg">#EEEEEE</color> <!-- default button background -->
-    <color name="buttns_bg_pressed">#D6D6D6</color> <!-- when pressed -->
+    <!-- Bottom navigation icon (light mode default) -->
+    <color name="nav_item_icon">#000000</color>
 
-    <!-- News Details Activity Text Colors -->
-    <color name="news_headline_text">#212121</color> <!-- dark gray/black -->
-    <color name="news_description_text">#424242</color> <!-- medium gray -->
-    <color name="news_writer_text">#616161</color> <!-- slightly lighter gray -->
-    <color name="news_date_text">#757575</color> <!-- even lighter gray -->
 
-    <!-- Accent / Highlights -->
-    <color name="primary_accent">@color/my_primary</color>  <!-- QR Label -->
-    <color name="divider">@color/lightorange</color>        <!-- Divider line -->
-    <color name="error_red">#D32F2F</color>                <!-- Note text -->
+    <!-- ================================================= -->
+    <!-- BUTTON STATES -->
+    <!-- ================================================= -->
+
+    <!-- Default button background -->
+    <color name="buttns_bg">#EEEEEE</color>
+
+    <!-- Button pressed state -->
+    <color name="buttns_bg_pressed">#D6D6D6</color>
+
+
+    <!-- ================================================= -->
+    <!-- NEWS DETAIL SCREEN COLORS -->
+    <!-- ================================================= -->
+
+    <!-- News headline -->
+    <color name="news_headline_text">#212121</color>
+
+    <!-- News description/body -->
+    <color name="news_description_text">#424242</color>
+
+    <!-- Reporter / author name -->
+    <color name="news_writer_text">#616161</color>
+
+    <!-- Date / timestamp -->
+    <color name="news_date_text">#757575</color>
+
+
+    <!-- ================================================= -->
+    <!-- HIGHLIGHTS & ERROR STATES -->
+    <!-- ================================================= -->
+
+    <!-- Primary accent usage (QR labels, highlights) -->
+    <color name="primary_accent">@color/my_primary</color>
+
+    <!-- Divider lines -->
+    <color name="divider">@color/lightorange</color>
+
+    <!-- Error / validation text -->
+    <color name="error_red">#D32F2F</color>
+
 </resources>

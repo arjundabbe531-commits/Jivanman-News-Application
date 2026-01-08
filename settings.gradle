@@ -1,33 +1,41 @@
+// -------------------------------
+// Plugin management configuration
+// -------------------------------
 pluginManagement {
-    repositories {
-        google {
-            content {
-                includeGroupByRegex("com\\.android.*")
-                includeGroupByRegex("com\\.google.*")
-                includeGroupByRegex("androidx.*")
-            }
-        }
-        mavenCentral()
-        gradlePluginPortal()
-        maven{
-            url = uri("https://jitpack.io")
-        }
 
+    // Repositories used to download Gradle plugins
+    repositories {
+        google()               // Android & Google plugins
+        mavenCentral()         // Central Maven repository
+        gradlePluginPortal()   // Official Gradle plugins
+        maven {
+            url = uri("https://jitpack.io") // GitHub-hosted libraries
+        }
     }
 }
+
+// ----------------------------------------
+// Dependency resolution configuration
+// ----------------------------------------
 dependencyResolutionManagement {
+
+    // Prevent repositories from being declared inside module-level build.gradle
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+
+    // Centralized repositories for all modules
     repositories {
-        google()
-        mavenCentral()
-        maven{
-            url = uri("https://jitpack.io")
-
+        google()               // AndroidX, Google Play services, Firebase
+        mavenCentral()         // Most third-party libraries
+        maven {
+            url = uri("https://jitpack.io") // Libraries like ImageSlideshow, etc.
         }
-
-
     }
 }
 
+// -------------------------------
+// Project structure
+// -------------------------------
 rootProject.name = "Jivanman"
+
+// Include app module
 include(":app")

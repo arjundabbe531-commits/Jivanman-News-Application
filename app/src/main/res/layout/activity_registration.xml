@@ -38,152 +38,145 @@
             android:gravity="center" />
 
         <!-- Name -->
-        <EditText
-            android:id="@+id/etRegistrationUsername"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="पूर्ण नाव"
-            android:inputType="textPersonName"
-            android:drawableStart="@drawable/baseline_person_24"
-            android:drawablePadding="12dp"
-            android:padding="12dp"
-            android:background="@drawable/rounded_edittext"
-            android:textColor="@color/text_primary"
-            android:textColorHint="@color/text_secondary"
-            android:drawableTint="?attr/colorOnSurface"
-            app:tint="?attr/colorOnSurface" />
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="?attr/colorPrimary"
+            app:startIconDrawable="@drawable/baseline_person_24"
+            app:startIconTint="@color/text_secondary"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusBottomEnd="8dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etRegistrationUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="पूर्ण नाव"
+                android:inputType="textPersonName"
+                android:paddingVertical="12dp"
+                android:textColor="@color/text_primary"
+                android:textColorHint="@color/text_secondary"
+                android:fontFamily="@font/domine"
+                android:textSize="16sp"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Mobile -->
-        <EditText
-            android:id="@+id/etRegistrationMobileNo"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="मोबाईल क्रमांक"
-            android:inputType="phone"
-            android:drawableStart="@drawable/baseline_phone_android_24"
-            android:drawablePadding="12dp"
-            android:padding="12dp"
-            android:background="@drawable/rounded_edittext"
-            android:textColor="@color/text_primary"
-            android:textColorHint="@color/text_secondary"
-            android:drawableTint="?attr/colorOnSurface"
-            app:tint="?attr/colorOnSurface" />
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="?attr/colorPrimary"
+            app:startIconDrawable="@drawable/baseline_phone_android_24"
+            app:startIconTint="@color/text_secondary"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusBottomEnd="8dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etRegistrationMobileNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="मोबाईल क्रमांक"
+                android:inputType="phone"
+                android:paddingVertical="12dp"
+                android:textColor="@color/text_primary"
+                android:textColorHint="@color/text_secondary"
+                android:fontFamily="@font/domine"
+                android:textSize="16sp"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Email -->
-        <EditText
-            android:id="@+id/etRegistrationEmail"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="इमेल"
-            android:inputType="textEmailAddress"
-            android:drawableStart="@drawable/baseline_email_24"
-            android:drawablePadding="12dp"
-            android:padding="12dp"
-            android:background="@drawable/rounded_edittext"
-            android:textColor="@color/text_primary"
-            android:textColorHint="@color/text_secondary"
-            android:drawableTint="?attr/colorOnSurface"
-            app:tint="?attr/colorOnSurface" />
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="?attr/colorPrimary"
+            app:startIconDrawable="@drawable/baseline_email_24"
+            app:startIconTint="@color/text_secondary"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusBottomEnd="8dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etRegistrationEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="इमेल"
+                android:inputType="textEmailAddress"
+                android:paddingVertical="12dp"
+                android:textColor="@color/text_primary"
+                android:textColorHint="@color/text_secondary"
+                android:fontFamily="@font/domine"
+                android:textSize="16sp"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Password -->
-        <RelativeLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp">
+            android:layout_marginTop="8dp"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="?attr/colorPrimary"
+            app:startIconDrawable="@drawable/lock_black"
+            app:startIconTint="@color/text_secondary"
+            app:endIconMode="password_toggle"
+            app:endIconTint="@color/text_secondary"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusBottomEnd="8dp">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etRegistrationPassword1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="पासवर्ड"
                 android:inputType="textPassword"
-                android:padding="12dp"
-                android:drawableStart="@drawable/lock_black"
-                android:drawablePadding="12dp"
-                android:background="@drawable/rounded_edittext"
+                android:paddingVertical="12dp"
                 android:textColor="@color/text_primary"
                 android:textColorHint="@color/text_secondary"
-                android:drawableTint="?attr/colorOnSurface"
-                app:tint="?attr/colorOnSurface" />
-
-            <ImageView
-                android:id="@+id/ivToggleRegistrationPassword1"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="16dp"
-                android:src="@drawable/baseline_remove_red_eye_24"
-                android:contentDescription="Toggle Password Visibility" />
-        </RelativeLayout>
+                android:fontFamily="@font/domine"
+                android:textSize="16sp"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Confirm Password -->
-        <RelativeLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp">
+            android:layout_marginTop="8dp"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="?attr/colorPrimary"
+            app:startIconDrawable="@drawable/lock_black"
+            app:startIconTint="@color/text_secondary"
+            app:endIconMode="password_toggle"
+            app:endIconTint="@color/text_secondary"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusBottomEnd="8dp">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etRegistrationPassword2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="पासवर्ड पुन्हा लिहा"
                 android:inputType="textPassword"
-                android:padding="12dp"
-                android:drawableStart="@drawable/lock_black"
-                android:drawablePadding="12dp"
-                android:background="@drawable/rounded_edittext"
+                android:paddingVertical="12dp"
                 android:textColor="@color/text_primary"
                 android:textColorHint="@color/text_secondary"
-                android:drawableTint="?attr/colorOnSurface"
-                app:tint="?attr/colorOnSurface" />
-
-            <ImageView
-                android:id="@+id/ivToggleRegistrationPassword2"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="16dp"
-                android:src="@drawable/baseline_remove_red_eye_24"
-                android:contentDescription="Toggle Confirm Password Visibility" />
-        </RelativeLayout>
+                android:fontFamily="@font/domine"
+                android:textSize="16sp"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Role Selection -->
-        <RadioGroup
-            android:id="@+id/rgRoles"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="8dp">
-
-            <RadioButton
-                android:id="@+id/rbReader"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="वाचक"
-                android:textColor="@color/text_primary"
-                android:textColorHint="@color/text_secondary"
-                android:textStyle="bold"
-                android:padding="8dp"
-                android:buttonTint="@color/my_primary"
-                app:tint="?attr/colorOnSurface" />
-
-            <RadioButton
-                android:id="@+id/rbJournalist"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="पत्रकार"
-                android:textColor="@color/text_primary"
-                android:textColorHint="@color/text_secondary"
-                android:textStyle="bold"
-                android:padding="8dp"
-                android:buttonTint="@color/my_primary"
-                app:tint="?attr/colorOnSurface" />
-        </RadioGroup>
 
         <!-- Register Button -->
         <com.google.android.material.button.MaterialButton

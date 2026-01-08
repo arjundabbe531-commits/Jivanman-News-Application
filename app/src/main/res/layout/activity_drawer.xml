@@ -14,11 +14,11 @@
     layout="@layout/activity_home"/>
 
     <com.google.android.material.navigation.NavigationView
-        android:layout_width="wrap_content"
+        android:id="@+id/navigationView"
+        android:layout_width="280dp"
         android:layout_height="match_parent"
         app:dividerInsetStart="60dp"
         app:itemIconPadding="20dp"
-        android:id="@+id/NavigationView"
         android:layout_gravity="start"
         app:headerLayout="@layout/drawer_header"
         app:menu="@menu/drawer_menu" />

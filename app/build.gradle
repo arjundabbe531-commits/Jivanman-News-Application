@@ -1,90 +1,177 @@
-// Apply essential Gradle plugins
+// ===============================
+// Plugins
+// ===============================
 plugins {
-    alias(libs.plugins.android.application) // Android app plugin
-    alias(libs.plugins.google.android.libraries.mapsplatform.secrets.gradle.plugin) // API key handling
-    alias(libs.plugins.google.gms.google.services) // Google/Firebase services
+    // Android application plugin
+    alias(libs.plugins.android.application)
+
+    // Google Maps API key & secrets handling
+    alias(libs.plugins.google.android.libraries.mapsplatform.secrets.gradle.plugin)
+
+    // Firebase / Google services plugin
+    alias(libs.plugins.google.gms.google.services)
 }
 
+// ===============================
+// Android Configuration
+// ===============================
 android {
-    namespace 'com.arjundabbe.jivanman' // Unique app package name
-    compileSdk 35 // Android SDK to compile with
+    namespace 'com.arjundabbe.jivanman'
+    compileSdk 35
 
     defaultConfig {
-        applicationId "com.arjundabbe.jivanman" // App ID
-        minSdk 24 // Minimum Android version
-        targetSdk 35 // Target Android version
-        versionCode 1 // Internal version
-        versionName "1.0" // Display version
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner" // Test runner
+        applicationId "com.arjundabbe.jivanman"
+
+        minSdk 24
+        targetSdk 35
+
+        versionCode 1
+        versionName "1.0"
+
+        // Instrumentation test runner
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    // ===============================
+    // Build Types
+    // ===============================
     buildTypes {
         release {
-            minifyEnabled false // Disable code shrinking
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro' // ProGuard rules
+            // Code shrinking disabled for now
+            minifyEnabled false
+
+            // Default + custom ProGuard rules
+            proguardFiles getDefaultProguardFile(
+                    'proguard-android-optimize.txt'
+            ), 'proguard-rules.pro'
         }
     }
 
+    // ===============================
+    // Java Compatibility
+    // ===============================
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11 // Java 11 source
-        targetCompatibility JavaVersion.VERSION_11 // Java 11 target
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 
+    // ===============================
+    // Features
+    // ===============================
     buildFeatures {
-        viewBinding true // Enable ViewBinding
+        // Enables ViewBinding across the app
+        viewBinding true
     }
 }
 
+// ===============================
+// Dependencies
+// ===============================
 dependencies {
-    // Core Android libraries
-    implementation libs.appcompat // AndroidX AppCompat (backward compatibility)
-    implementation libs.material // Google Material Components
-    implementation libs.activity // AndroidX Activity support
-    implementation libs.constraintlayout // Layout system for complex UIs
 
-    // Google & Firebase services
-    implementation libs.play.services.maps // Google Maps SDK
-    implementation libs.firebase.messaging // Firebase Cloud Messaging (push notifications)
+    // -------------------------------
+    // Core Android Libraries
+    // -------------------------------
+    implementation libs.appcompat
+    implementation libs.material
+    implementation libs.activity
+    implementation libs.constraintlayout
+    implementation libs.mediarouter
+    implementation libs.navigation.fragment
 
-    // Media & Navigation
-    implementation libs.mediarouter // Media routing for external displays & devices
-    implementation libs.navigation.fragment // Jetpack Navigation (fragment navigation)
+    // -------------------------------
+    // Firebase (BoM manages versions)
+    // -------------------------------
+    implementation platform('com.google.firebase:firebase-bom:33.6.0')
 
-    // Testing
-    testImplementation libs.junit // JUnit framework (unit testing)
-    androidTestImplementation libs.ext.junit // JUnit extensions for Android
-    androidTestImplementation libs.espresso.core // Espresso (UI testing)
+    implementation 'com.google.firebase:firebase-auth'
+    implementation 'com.google.firebase:firebase-database'
+    implementation 'com.google.firebase:firebase-firestore'
+    implementation 'com.google.firebase:firebase-storage'
+    implementation 'com.google.firebase:firebase-messaging'
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-functions:20.3.2'
 
-    // UI Components
-    implementation 'androidx.cardview:cardview:1.0.0' // CardView UI component
-    implementation 'com.google.android.material:material:1.11.0' // Latest Material Components
-    implementation 'com.github.denzcoskun:ImageSlideshow:0.1.2' // Image slider (auto & manual)
-
-    // Networking
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0' // Retrofit (HTTP networking)
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0' // Retrofit JSON converter (Gson)
-
-    // ViewPager2
-    implementation 'androidx.viewpager2:viewpager2:1.0.0' // Swipable pages (ViewPager2)
-
-    // QR Code Scanner
-    implementation 'com.journeyapps:zxing-android-embedded:4.3.0' // QR/Barcode scanning
-
-    // Image Cropper
-    implementation 'com.github.CanHub:Android-Image-Cropper:4.3.2' // Crop & edit images
-
+    // -------------------------------
     // Image Loading
-    implementation 'com.github.bumptech.glide:glide:4.16.0' // Glide (image loading/caching)
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0' // Glide compiler (annotations)
+    // -------------------------------
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0'
+    implementation 'com.squareup.picasso:picasso:2.71828'
 
+    // -------------------------------
+    // Charts & UI Widgets
+    // -------------------------------
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.github.denzcoskun:ImageSlideshow:0.1.2'
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
+    implementation 'com.google.android.flexbox:flexbox:3.0.0'
+
+    // -------------------------------
+    // Google Sign-In & Credentials
+    // -------------------------------
+    implementation "com.google.android.gms:play-services-auth:21.3.0"
+    implementation libs.credentials
+    implementation libs.credentials.play.services.auth
+    implementation libs.googleid
+
+    // -------------------------------
+    // Google Maps
+    // -------------------------------
+    implementation libs.gms.play.services.maps
+
+    // -------------------------------
+    // Image Cropper
+    // -------------------------------
+    implementation 'com.github.CanHub:Android-Image-Cropper:4.3.2'
+
+    // -------------------------------
+    // QR Code Scanner
+    // -------------------------------
+    implementation 'com.journeyapps:zxing-android-embedded:4.3.0'
+
+    // -------------------------------
+    // Networking
+    // -------------------------------
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.android.volley:volley:1.2.1'
+
+    // -------------------------------
     // News API
-    implementation 'com.github.KwabenBerko:News-API-Java:1.0.2' // NewsAPI wrapper for Java
+    // -------------------------------
+    implementation 'com.github.KwabenBerko:News-API-Java:1.0.2'
 
+    // -------------------------------
     // Animations
-    implementation 'com.airbnb.android:lottie:6.1.0' // Lottie (vector animations)
+    // -------------------------------
+    implementation 'com.airbnb.android:lottie:6.1.0'
 
-    // Google Authentication
-    implementation "com.google.android.gms:play-services-auth:21.3.0" // Google Sign-In / Auth APIs
+    // -------------------------------
+    // ML Kit (OCR / Text Scan)
+    // -------------------------------
+    implementation 'com.google.mlkit:text-recognition:16.0.0'
+
+    // -------------------------------
+    // Cloudinary (Image Uploads)
+    // -------------------------------
+    implementation 'com.cloudinary:cloudinary-android:2.3.1'
+
+    // -------------------------------
+    // Facebook Login
+    // -------------------------------
     implementation 'com.facebook.android:facebook-login:latest.release'
 
+    // -------------------------------
+    // Testing
+    // -------------------------------
+    testImplementation libs.junit
+    androidTestImplementation libs.ext.junit
+    androidTestImplementation libs.espresso.core
 }
+
+// ===============================
+// Firebase Plugin (Required)
+// ===============================
+apply plugin: 'com.google.gms.google-services'

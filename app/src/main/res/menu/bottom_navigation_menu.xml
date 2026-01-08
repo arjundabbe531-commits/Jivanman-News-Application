@@ -14,9 +14,9 @@
         android:icon="@drawable/baseline_newspaper_24"
         android:title="ई-पेपर"/>
     <item
-        android:id="@+id/bottom_Nav_Search"
-        android:icon="@drawable/baseline_search_24"
-        android:title="शोधा"
+        android:id="@+id/bottom_Nav_Profile"
+        android:icon="@drawable/round_person_24"
+        android:title="प्रोफाईल"
         />
 
 

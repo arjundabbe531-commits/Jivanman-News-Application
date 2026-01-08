@@ -1,19 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!--
+        Night (Dark Mode) Theme for Jivanman
+
+        This file overrides Theme.Jivanman when system night mode is enabled.
+        It relies entirely on values-night/colors.xml for dark palette values.
+    -->
     <style name="Theme.Jivanman" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Primary -->
+
+        <!-- ===============================
+             Primary / Brand Colors
+             =============================== -->
         <item name="colorPrimary">@color/my_primary</item>
         <item name="colorSecondary">@color/accent_blue</item>
 
-        <!-- Backgrounds -->
+        <!-- ===============================
+             Background & Surface Colors
+             =============================== -->
+        <!-- App window background -->
         <item name="android:colorBackground">@color/appBackground</item>
+
+        <!-- Card, dialog, sheet backgrounds -->
         <item name="colorSurface">@color/colorSurface</item>
 
-        <!-- Text -->
+        <!-- ===============================
+             Text & Content Colors
+             =============================== -->
+        <!-- Text/icons shown on surfaces -->
         <item name="colorOnSurface">@color/colorOnSurface</item>
+
+        <!-- Text/icons shown on background -->
         <item name="colorOnBackground">@color/text_primary</item>
 
-        <!-- Status bar -->
+        <!-- ===============================
+             Status Bar Configuration
+             =============================== -->
+        <!-- Transparent status bar for immersive UI -->
         <item name="android:statusBarColor">@android:color/transparent</item>
+
+        <!--
+            NOTE:
+            In dark mode, this ideally should be FALSE
+            so status bar icons appear light.
+            Keeping TRUE may cause low contrast on some devices.
+        -->
         <item name="android:windowLightStatusBar">true</item>
+
     </style>
+
 </resources>

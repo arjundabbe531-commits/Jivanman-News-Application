@@ -1,36 +1,49 @@
 package com.arjundabbe.jivanman.ui;
 
-import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.util.Base64;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.arjundabbe.jivanman.R;
-import com.arjundabbe.jivanman.database.DBHelper;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.squareup.picasso.Picasso;
+
+import java.util.Map;
 
 public class MyProfileActivity extends AppCompatActivity {
 
+    private static final String TAG = "MyProfileActivity";
+
+    // -------------------------------
     // Views
-    private ImageView ivprofileImage, btnBack;
+    // -------------------------------
+    private ImageView ivProfileImage, btnBack;
     private TextView tvProfileName, tvProfileEmail, tvProfileRole, tvProfileMobile, tvProfileId, editProfile;
 
-    @SuppressLint({"Range", "MissingInflatedId"})
+    // -------------------------------
+    // Firebase
+    // -------------------------------
+    private FirebaseFirestore db;
+    private FirebaseAuth auth;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        // Apply saved theme before loading layout
+        applySavedTheme();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
 
         // Initialize views
-        ivprofileImage = findViewById(R.id.ivprofileImage);
+        ivProfileImage = findViewById(R.id.ivprofileImage);
         btnBack = findViewById(R.id.btn_back);
         tvProfileName = findViewById(R.id.tvProfileName);
         tvProfileEmail = findViewById(R.id.tvProfileEmail);
@@ -39,84 +52,113 @@ public class MyProfileActivity extends AppCompatActivity {
         tvProfileId = findViewById(R.id.tvProfileId);
         editProfile = findViewById(R.id.editProfile);
 
-        // Back button click - close activity
+        // Initialize Firebase
+        db = FirebaseFirestore.getInstance();
+        auth = FirebaseAuth.getInstance();
+
+        // Back button closes activity
         btnBack.setOnClickListener(v -> finish());
 
-        // Edit profile button click - open EditProfileActivity
-        editProfile.setOnClickListener(v -> {
-            startActivity(new android.content.Intent(MyProfileActivity.this, EditProfileActivity.class));
-        });
+        // Edit profile navigates to EditProfileActivity
+        editProfile.setOnClickListener(v -> startActivity(
+                new android.content.Intent(MyProfileActivity.this, EditProfileActivity.class)
+        ));
 
-        // Load user data from SharedPreferences
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        String email = prefs.getString("email", null);
+        // Load user profile data from Firestore
+        loadUserProfile();
 
-        if (email != null) {
-            DBHelper dbHelper = new DBHelper(this);
-            Cursor cursor = dbHelper.getUserByEmail(email);
+        // Load theme preference from Firestore to sync across devices
+        loadUserTheme();
+    }
 
-            if (cursor != null) {
-                Log.d("MyProfile", "Cursor count: " + cursor.getCount());
-            }
+    /** Apply saved dark/light theme from SharedPreferences */
+    private void applySavedTheme() {
+        SharedPreferences themePrefs = getSharedPreferences("app_settings", MODE_PRIVATE);
+        boolean isDarkMode = themePrefs.getBoolean("dark_mode", false);
+        AppCompatDelegate.setDefaultNightMode(
+                isDarkMode ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO
+        );
+    }
 
-            // Set user details in views
-            if (cursor != null && cursor.moveToFirst()) {
-                tvProfileName.setText(cursor.getString(cursor.getColumnIndex("name")));
-                tvProfileEmail.setText(cursor.getString(cursor.getColumnIndex("email")));
-                tvProfileRole.setText(cursor.getString(cursor.getColumnIndex("role")));
-                tvProfileMobile.setText("+91-" + cursor.getString(cursor.getColumnIndex("mobileno")));
-                tvProfileId.setText("JIV" + cursor.getString(cursor.getColumnIndex("id"))); // optional
-            }
-
-            if (cursor != null) cursor.close();
+    /** Load user profile information from Firestore */
+    private void loadUserProfile() {
+        if (auth.getCurrentUser() == null) {
+            Log.w(TAG, "No authenticated user found");
+            return;
         }
 
-        // Load profile image from SharedPreferences (Base64 encoded)
-        String encodedImage = prefs.getString("profile_image", null);
-        if (encodedImage != null) {
-            byte[] imageBytes = Base64.decode(encodedImage, Base64.DEFAULT);
-            Bitmap savedBitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
-            ivprofileImage.setImageBitmap(savedBitmap);
-        }
+        String uid = auth.getCurrentUser().getUid();
+        db.collection("Users").document(uid)
+                .get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (!documentSnapshot.exists()) {
+                        Log.w(TAG, "User document does not exist for UID: " + uid);
+                        return;
+                    }
 
-        // Profile image appearance
-        ivprofileImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        ivprofileImage.setClipToOutline(true); // rounded/circular outline in XML
+                    // Fetch fields
+                    String name = documentSnapshot.getString("name");
+                    String email = documentSnapshot.getString("email");
+                    String role = documentSnapshot.getString("role");
+                    String mobile = documentSnapshot.getString("mobileno");
+                    String jivanmanId = documentSnapshot.getString("jivanman_id");
+                    String profileImageUrl = documentSnapshot.getString("profile_image_url");
+
+                    // Update UI with defaults for null/empty values
+                    tvProfileName.setText(name != null && !name.isEmpty() ? name : "~ नाव उपलब्ध नाही");
+                    tvProfileEmail.setText(email != null && !email.isEmpty() ? email : "~ ईमेल उपलब्ध नाही");
+                    tvProfileRole.setText(role != null && !role.isEmpty() ? convertRole(role) : "वाचक/पत्रकार");
+                    tvProfileMobile.setText(mobile != null && !mobile.isEmpty() ? "+91-" + mobile : "+91-XXXXXXXXXX");
+                    tvProfileId.setText(jivanmanId != null && !jivanmanId.isEmpty() ? jivanmanId : "JIVXXXXXXXX");
+
+                    // Load profile image with Picasso, fallback to default
+                    if (profileImageUrl != null && !profileImageUrl.isEmpty()) {
+                        Picasso.get()
+                                .load(profileImageUrl.replace("http://", "https://"))
+                                .placeholder(R.drawable.round_person_24)
+                                .error(R.drawable.round_person_24)
+                                .into(ivProfileImage);
+                    } else {
+                        ivProfileImage.setImageResource(R.drawable.round_person_24);
+                    }
+
+                })
+                .addOnFailureListener(e -> Log.e(TAG, "Error fetching user profile", e));
+    }
+
+    /** Load dark/light theme from Firestore */
+    private void loadUserTheme() {
+        if (auth.getCurrentUser() == null) return;
+
+        String uid = auth.getCurrentUser().getUid();
+        DocumentReference userRef = db.collection("Users").document(uid);
+
+        userRef.get().addOnSuccessListener(doc -> {
+            if (doc.exists() && doc.contains("preferences")) {
+                Map<String, Object> prefs = (Map<String, Object>) doc.get("preferences");
+                boolean darkMode = prefs.containsKey("darkMode") && (Boolean) prefs.get("darkMode");
+
+                AppCompatDelegate.setDefaultNightMode(
+                        darkMode ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO
+                );
+            }
+        }).addOnFailureListener(e -> Log.e(TAG, "Failed to load theme preference", e));
+    }
+
+    /** Converts Firebase role string to Marathi label */
+    private String convertRole(String role) {
+        switch (role.toLowerCase()) {
+            case "admin": return "प्रशासक";
+            case "reporter": return "पत्रकार";
+            case "reader": return "वाचक";
+            default: return role;
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        loadUserData();  // Reload fresh user data every time activity resumes
-    }
-
-    @SuppressLint("Range")
-    private void loadUserData() {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        String email = prefs.getString("email", null);
-
-        if (email != null) {
-            DBHelper dbHelper = new DBHelper(this);
-            Cursor cursor = dbHelper.getUserByEmail(email);
-
-            // Update views with latest user data from DB
-            if (cursor != null && cursor.moveToFirst()) {
-                tvProfileName.setText(cursor.getString(cursor.getColumnIndex("name")));
-                tvProfileEmail.setText(cursor.getString(cursor.getColumnIndex("email")));
-                tvProfileRole.setText(cursor.getString(cursor.getColumnIndex("role")));
-                tvProfileMobile.setText("+91-" + cursor.getString(cursor.getColumnIndex("mobileno")));
-                tvProfileId.setText("JIV" + cursor.getString(cursor.getColumnIndex("id")));
-            }
-
-            if (cursor != null) cursor.close();
-        }
-
-        // Reload profile image from SharedPreferences
-        String encodedImage = prefs.getString("profile_image", null);
-        if (encodedImage != null) {
-            byte[] imageBytes = Base64.decode(encodedImage, Base64.DEFAULT);
-            Bitmap savedBitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
-            ivprofileImage.setImageBitmap(savedBitmap);
-        }
+        // Refresh profile after editing
+        loadUserProfile();
     }
 }

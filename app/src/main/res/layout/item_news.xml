@@ -4,9 +4,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="6dp"
-    android:paddingStart="8dp"
-    android:paddingEnd="8dp">
+    android:padding="8dp"
+    android:layout_marginBottom="8dp"
+    android:background="?attr/selectableItemBackground"
+    >
 
     <!-- Article Image -->
     <ImageView
@@ -15,9 +16,11 @@
         android:layout_height="80dp"
         android:scaleType="centerCrop"
         android:contentDescription="Article Image"
+        android:background="@drawable/rounded_corners"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
 
     <!-- Title -->
     <TextView
@@ -33,36 +36,25 @@
         android:ellipsize="end"
         app:layout_constraintStart_toEndOf="@id/articleImage"
         app:layout_constraintTop_toTopOf="@id/articleImage"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
     <!-- Description -->
     <TextView
         android:id="@+id/articleDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
         android:layout_marginStart="12dp"
+        android:layout_marginTop="4dp"
         android:text="भारताची GDP वाढ दर 6.5% — चीन, अमेरिका व युरोपच्या पुढे!"
         android:textSize="14sp"
+        android:textColor="@color/news_description_text"
         android:maxLines="2"
         android:ellipsize="end"
-        android:textColor="@color/news_description_text"
         app:layout_constraintStart_toEndOf="@id/articleImage"
         app:layout_constraintTop_toBottomOf="@id/articleTitle"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <!-- Footer: DateTime -->
-    <TextView
-        android:id="@+id/articleDateTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:layout_marginStart="12dp"
-        android:text="31 Jul 2025 . 06:07 PM"
-        android:textSize="12sp"
-       android:textColor="@color/news_date_text"
-        app:layout_constraintStart_toEndOf="@id/articleImage"
-        app:layout_constraintTop_toBottomOf="@id/articleDescription" />
-
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/articleImage"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

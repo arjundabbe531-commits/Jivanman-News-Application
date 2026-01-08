@@ -1,75 +1,127 @@
 package com.arjundabbe.jivanman.ui;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.util.Patterns;
-import android.view.View;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.arjundabbe.jivanman.R;
+import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthOptions;
+import com.google.firebase.auth.PhoneAuthProvider;
+
+import java.util.concurrent.TimeUnit;
 
 public class ForgetPasswordActivity extends AppCompatActivity {
 
-    EditText etEmail;
-    Button btnRecover, btnBackToLogin;
-    TextView tvRecoveredPassword;
+    private static final String TAG = "ForgetPasswordOTP";
+
+    // ---------------- UI ----------------
+    private EditText etMobile;
+    private Button btnSendOtp;
+
+    // ---------------- Firebase ----------------
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forget_password);
 
-        // Initialize views
-        etEmail = findViewById(R.id.etEmail);
-        btnRecover = findViewById(R.id.btnRecover);
-        btnBackToLogin = findViewById(R.id.btnBackToLogin);
-        tvRecoveredPassword = findViewById(R.id.tvRecoveredPassword);
+        // Bind UI components
+        etMobile = findViewById(R.id.etMobile);
+        btnSendOtp = findViewById(R.id.btnSendOtp);
 
-        // Clear error on focus
-        etEmail.setOnFocusChangeListener((v, hasFocus) -> {
-            if (hasFocus) {
-                etEmail.setError(null);
-            }
-        });
+        // Firebase Auth instance
+        mAuth = FirebaseAuth.getInstance();
 
-        // Handle password recovery
-        btnRecover.setOnClickListener(view -> {
-            String enteredEmail = etEmail.getText().toString().trim();
+        // Handle OTP request button click
+        btnSendOtp.setOnClickListener(v -> sendOtp());
+    }
 
-            if (!Patterns.EMAIL_ADDRESS.matcher(enteredEmail).matches()) {
-                etEmail.setError("कृपया वैध ईमेल भरा");
-                return;
-            }
+    // ---------------- SEND OTP ----------------
+    private void sendOtp() {
+        String mobile = etMobile.getText().toString().trim();
 
-            btnRecover.setEnabled(false); // Prevent double click
+        // Validate mobile number (10 digits)
+        if (!mobile.matches("[0-9]{10}")) {
+            etMobile.setError("वैध 10 अंकी मोबाइल नंबर भरा");
+            return;
+        }
 
-            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-            String registeredEmail = preferences.getString("email", "");
-            String savedPassword = preferences.getString("password", "");
+        btnSendOtp.setEnabled(false);
 
-            if (enteredEmail.equals(registeredEmail)) {
-                String message = "✅ तुमचा पासवर्ड: " + savedPassword;
-                tvRecoveredPassword.setText(message);
-                Toast.makeText(this, "पासवर्ड यशस्वीपणे मिळवला", Toast.LENGTH_SHORT).show();
-            } else {
-                tvRecoveredPassword.setText("");
-                Toast.makeText(this, "❌ हा ईमेल नोंदणीकृत नाही", Toast.LENGTH_SHORT).show();
-            }
+        // Configure phone authentication
+        PhoneAuthOptions options = PhoneAuthOptions.newBuilder(mAuth)
+                .setPhoneNumber("+91" + mobile)
+                .setTimeout(60L, TimeUnit.SECONDS)
+                .setActivity(this)
+                .setCallbacks(callbacks)
+                .build();
 
-            btnRecover.setEnabled(true); // Always re-enable
-        });
+        Log.d(TAG, "Sending OTP to +91" + mobile);
+        PhoneAuthProvider.verifyPhoneNumber(options);
+    }
 
-        // Back to login
-        btnBackToLogin.setOnClickListener(v -> {
-            startActivity(new Intent(ForgetPasswordActivity.this, LoginActivity.class));
-            finish();
-        });
+    // ---------------- CALLBACKS ----------------
+    private final PhoneAuthProvider.OnVerificationStateChangedCallbacks callbacks =
+            new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+
+                // Auto verification (instant verification)
+                @Override
+                public void onVerificationCompleted(@NonNull PhoneAuthCredential credential) {
+                    Log.d(TAG, "Auto verification completed");
+                    signInWithCredential(credential);
+                }
+
+                // Verification failed
+                @Override
+                public void onVerificationFailed(@NonNull FirebaseException e) {
+                    btnSendOtp.setEnabled(true);
+                    Log.e(TAG, "OTP Failed", e);
+                    Toast.makeText(
+                            ForgetPasswordActivity.this,
+                            "OTP Failed: " + e.getMessage(),
+                            Toast.LENGTH_LONG
+                    ).show();
+                }
+
+                // OTP sent successfully
+                @Override
+                public void onCodeSent(@NonNull String verificationId,
+                                       @NonNull PhoneAuthProvider.ForceResendingToken token) {
+                    Log.d(TAG, "OTP Sent successfully");
+
+                    // Open OTP verification activity
+                    Intent intent = new Intent(ForgetPasswordActivity.this, OtpVerifyActivity.class);
+                    intent.putExtra("verificationId", verificationId);
+                    startActivity(intent);
+                }
+            };
+
+    // ---------------- SIGN IN WITH OTP ----------------
+    private void signInWithCredential(PhoneAuthCredential credential) {
+        mAuth.signInWithCredential(credential)
+                .addOnSuccessListener(authResult -> {
+                    String uid = authResult.getUser().getUid();
+                    Log.d(TAG, "OTP verified, UID=" + uid);
+
+                    // Open ResetPasswordActivity
+                    Intent intent = new Intent(this, ResetPasswordActivity.class);
+                    intent.putExtra("uid", uid);
+                    startActivity(intent);
+                    finish();
+                })
+                .addOnFailureListener(e -> {
+                    Log.e(TAG, "Credential sign-in failed", e);
+                    Toast.makeText(this, "OTP चुकीचा आहे", Toast.LENGTH_SHORT).show();
+                });
     }
 }

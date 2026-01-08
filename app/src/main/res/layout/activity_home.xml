@@ -6,6 +6,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/grey_font"
     tools:context=".ui.HomeActivity">
 
     <!-- Main content -->
@@ -36,7 +37,6 @@
                 app:tint="?attr/colorOnBackground"
                 app:itemIconTint="?attr/colorOnPrimary"
                 app:itemTextColor="?attr/colorOnPrimary"
-                android:layout_marginStart="0dp"
                 android:paddingEnd="14dp"
                 android:layout_marginTop="20dp"
                 android:background="@android:color/transparent"
@@ -56,7 +56,7 @@
                     android:id="@+id/appName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="जीवनमान"
+                    android:text="जिवनमान"
                     android:textColor="#6A040F"
                     android:textSize="40sp"
                     android:textStyle="bold"
@@ -96,9 +96,7 @@
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
             app:labelVisibilityMode="labeled"
-
-            app:itemIconTint="?attr/colorOnPrimary"
-            app:itemTextColor="?attr/colorOnPrimary"
+            app:itemRippleColor="@color/grey_font"
 
             app:menu="@menu/bottom_navigation_menu" />
     </LinearLayout>

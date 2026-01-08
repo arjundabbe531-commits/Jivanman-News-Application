@@ -1,22 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Base Theme -->
+    <!-- ========================================================= -->
+    <!-- Base Theme : Applied internally / for inheritance          -->
+    <!-- Uses Material 3 with DayNight support & no ActionBar      -->
+    <!-- ========================================================= -->
     <style name="Base.Theme.Jivanman" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorSecondary">@color/accent_blue</item>
+
+        <!-- Brand Colors -->
         <item name="colorPrimary">@color/my_primary</item>
+        <item name="colorSecondary">@color/accent_blue</item>
         <item name="colorOnPrimary">@color/on_primary</item>
+
+        <!-- Background & Surface -->
         <item name="android:colorBackground">@color/appBackground</item>
         <item name="colorSurface">@color/colorSurface</item>
         <item name="colorOnSurface">@color/colorOnSurface</item>
         <item name="colorOnBackground">@color/text_primary</item>
+
+        <!-- Status Bar -->
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>
 
-    <!-- App Theme -->
+    <!-- ========================================================= -->
+    <!-- Main App Theme : Applied in AndroidManifest               -->
+    <!-- ========================================================= -->
     <style name="Theme.Jivanman" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Primary -->
+
+        <!-- Primary Brand Colors -->
         <item name="colorPrimary">@color/my_primary</item>
         <item name="colorSecondary">@color/accent_blue</item>
 
@@ -24,39 +36,92 @@
         <item name="android:colorBackground">@color/appBackground</item>
         <item name="colorSurface">@color/colorSurface</item>
 
-        <!-- Text -->
+        <!-- Text & Icons -->
         <item name="colorOnSurface">@color/colorOnSurface</item>
         <item name="colorOnBackground">@color/text_primary</item>
 
-        <!-- Status bar -->
+        <!-- Status Bar -->
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>
 
-    <!-- Drawer Navigation Theme -->
-    <style name="Base.Theme.Drawer.Navigation" parent="Theme.Material3.DayNight.NoActionBar">
+    <!-- ========================================================= -->
+    <!-- Drawer / Navigation Theme                                 -->
+    <!-- Used for DrawerLayout / Navigation UI                     -->
+    <!-- ========================================================= -->
+    <style name="Base.Theme.Drawer.Navigation"
+        parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
-    <!-- Action bar visible -->
+    <!-- ========================================================= -->
+    <!-- Theme with ActionBar (used only if required)              -->
+    <!-- ========================================================= -->
     <style name="ShowActionBar" parent="Theme.Material3.DayNight" />
 
-    <!-- Bottom Navigation Active Indicator -->
-    <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+    <!-- ========================================================= -->
+    <!-- Bottom Navigation Active Indicator Style                  -->
+    <!-- ========================================================= -->
+    <style name="App.Custom.Indicator"
+        parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
         <item name="android:color">@color/yellow</item>
     </style>
 
-    <!-- Circle ImageView -->
+    <!-- ========================================================= -->
+    <!-- Circular Image Style (Profile images, avatars)            -->
+    <!-- ========================================================= -->
     <style name="CircleImageView">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
     </style>
 
-    <!-- No Internet Activity -->
-    <style name="NoInternetTheme" parent="Theme.Material3.DayNight.NoActionBar">
+    <!-- ========================================================= -->
+    <!-- No Internet / Dialog-like Activity Theme                  -->
+    <!-- ========================================================= -->
+    <style name="NoInternetTheme"
+        parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+    </style>
+
+    <!-- ========================================================= -->
+    <!-- Dashboard Card Styles                                     -->
+    <!-- ========================================================= -->
+    <style name="DashboardCard">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">160dp</item>
+        <item name="android:layout_columnWeight">1</item>
+        <item name="cardCornerRadius">22dp</item>
+        <item name="cardElevation">10dp</item>
+        <item name="android:foreground">
+            ?attr/selectableItemBackgroundBorderless
+        </item>
+    </style>
+
+    <style name="DashboardCardInner">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="DashboardCardText">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:fontFamily">
+            @font/noto_sans_devanagari
+        </item>
+    </style>
+
+    <!-- ========================================================= -->
+    <!-- Elevated Floating Action Button                            -->
+    <!-- ========================================================= -->
+    <style name="Widget.Fab.Elevated"
+        parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="android:elevation">12dp</item>
+        <item name="android:translationZ">16dp</item>
     </style>
 
 </resources>

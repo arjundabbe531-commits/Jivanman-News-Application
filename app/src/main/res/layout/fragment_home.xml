@@ -7,11 +7,21 @@
     android:background="?attr/colorSurface"
     tools:context=".ui.fragments.HomeFragment">
 
-
+    <!-- RecyclerView for News list -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/homeRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
         android:scrollbars="vertical" />
+
+    <!-- Progress Loader -->
+    <ProgressBar
+        android:id="@+id/homeProgressBar"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        style="?android:attr/progressBarStyleLarge" />
+
 </RelativeLayout>

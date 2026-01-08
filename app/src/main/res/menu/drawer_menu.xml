@@ -1,9 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-<group
-    android:id="@+id/group1"
-    >
     <item
         android:id="@+id/MenuItemHome"
         android:title="होम"
@@ -16,54 +13,17 @@
         android:icon="@drawable/baseline_map_24"
         />
     <item
+        android:id="@+id/MenuItemEconomy"
+        android:title="अर्थव्यवस्था"
+        app:showAsAction="never"
+        android:icon="@drawable/baseline_currency_rupee_24"
+        />
+    <item
         android:id="@+id/MenuItemPolitics"
         android:title="सत्ताकारण"
         app:showAsAction="never"
         android:icon="@drawable/baseline_gavel_24"
         />
-    <item
-        android:id="@+id/MenuItemVicharmanch"
-        android:title="विचारमंच"
-        app:showAsAction="never"
-        android:icon="@drawable/baseline_psychology_24"
-        />
-    <item
-        android:id="@+id/MenuItemCity"
-        android:title="शहर"
-        app:showAsAction="never"
-        android:icon="@drawable/baseline_location_city_24"
-        />
-    <item
-        android:id="@+id/MenuItemCarrier"
-        android:title="करीअर"
-        app:showAsAction="never"
-        android:icon="@drawable/baseline_school_24"
-        />
-    <item
-        android:id="@+id/MenuItemUpsc"
-        android:title="UPSC"
-        app:showAsAction="never"
-        android:icon="@drawable/baseline_workspace_premium_24"
-        />
-    <item
-        android:id="@+id/MenuItemMpsc"
-        android:title="MPSC"
-        app:showAsAction="never"
-        android:icon="@drawable/baseline_military_tech_24"
-        />
-    <item
-        android:id="@+id/MenuItemHealth"
-        android:title="हेंल्थ"
-        app:showAsAction="never"
-        android:icon="@drawable/baseline_health_and_safety_24"
-        />
-    <item
-        android:id="@+id/MenuItemEconomy"
-        android:title="अर्थभान"
-        app:showAsAction="never"
-        android:icon="@drawable/baseline_currency_rupee_24"
-        />
-
     <item
         android:id="@+id/MenuItemSport"
         android:title="क्रीडा"
@@ -71,28 +31,52 @@
         android:icon="@drawable/baseline_sports_score_24"
         />
     <item
-        android:id="@+id/MenuItemRecpi"
-        android:title="रेसिपी"
+        android:id="@+id/MenuItemEntertainment"
+        android:title="मनोरंजन"
         app:showAsAction="never"
-        android:icon="@drawable/baseline_restaurant_menu_24"
+        android:icon="@drawable/baseline_local_movies_24"
         />
+    <item
+        android:id="@+id/MenuItemAgriculture"
+        android:title="शेती"
+        app:showAsAction="never"
+        android:icon="@drawable/baseline_agriculture_24"
+        />
+    <item
+        android:id="@+id/MenuItemCommpititiveExam"
+        android:title="स्पर्धा परीक्षा"
+        app:showAsAction="never"
+        android:icon="@drawable/baseline_workspace_premium_24" />
 
     <item
-        android:id="@+id/MenuItemFuture"
-        android:title="राशीभविष्य"
+        android:id="@+id/MenuItemTechnology"
+        android:title="तंत्रज्ञान"
         app:showAsAction="never"
-        android:icon="@drawable/baseline_auto_awesome_24"
+        android:icon="@drawable/baseline_memory_24"
         />
-</group>
-    <group
-        android:id="@+id/group2">
-        <item
-            android:id="@+id/MenuItemJivanmanRadio"
-            android:title="जीवनमान रेडिओ"
-            app:showAsAction="never"
-            android:icon="@drawable/baseline_radio_24"
-            />
+    <item
+        android:id="@+id/MenuItemEducation"
+        android:title="शिक्षण"
+        app:showAsAction="never"
+        android:icon="@drawable/baseline_school_24"
+        />
+    <item
+        android:id="@+id/MenuItemWeather"
+        android:title="हवामान"
+        app:showAsAction="never"
+        android:icon="@drawable/baseline_wb_sunny_24"
+    />
 
-    </group>
+    <item
+        android:id="@+id/MenuItemHealth"
+        android:title="आरोग्य"
+        app:showAsAction="never"
+        android:icon="@drawable/baseline_health_and_safety_24"
+        />
+
+
+
+
+
 
 </menu>

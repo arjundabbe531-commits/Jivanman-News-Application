@@ -27,7 +27,7 @@
             android:id="@+id/appName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="जीवनमान"
+            android:text="जिवनमान"
             android:textColor="#6A040F"
             android:textSize="52sp"
             android:textStyle="bold"
@@ -54,8 +54,9 @@
             android:layout_marginTop="6dp"
             android:layout_marginEnd="21dp"/>
     </FrameLayout>
+    <!--
+        Powered by / Credit
 
-    <!-- Powered by / Credit -->
     <TextView
         android:id="@+id/poweredBy"
         android:layout_width="wrap_content"
@@ -69,5 +70,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginBottom="12dp"/>
+    -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

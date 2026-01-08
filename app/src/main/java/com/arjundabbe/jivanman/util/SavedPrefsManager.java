@@ -10,6 +10,10 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
+/**
+ * Utility class to manage saving and retrieving articles locally
+ * using SharedPreferences as JSON.
+ */
 public class SavedPrefsManager {
 
     // Name of the SharedPreferences file
@@ -18,58 +22,48 @@ public class SavedPrefsManager {
     // Key for storing the saved article list
     private static final String KEY_LIST = "article_list";
 
-    // ============ SAVE A SINGLE ARTICLE ============
+    // ================= SAVE A SINGLE ARTICLE =================
     public static void saveArticle(Context context, SavedArticle article) {
-        // Get the current list from SharedPreferences
+        // Retrieve the existing list
         ArrayList<SavedArticle> list = getSavedArticles(context);
 
-        // Add the new article to the list
+        // Add the new article
         list.add(article);
 
-        // Save the updated list back to SharedPreferences
+        // Save the updated list
         saveList(context, list);
     }
 
-    // ============ GET SAVED ARTICLES ============
+    // ================= GET SAVED ARTICLES =================
     public static ArrayList<SavedArticle> getSavedArticles(Context context) {
-        // Access SharedPreferences file
         SharedPreferences prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
 
-        // Get the JSON string of the list from SharedPreferences
         String json = prefs.getString(KEY_LIST, "");
 
-        // Define the type for deserialization
         Type type = new TypeToken<ArrayList<SavedArticle>>() {}.getType();
 
-        // If no data is found, return empty list, else convert JSON to list
+        // Return empty list if nothing saved, otherwise parse JSON
         return json.isEmpty() ? new ArrayList<>() : new Gson().fromJson(json, type);
     }
 
-    // ============ REMOVE ARTICLE BY TITLE ============
+    // ================= REMOVE ARTICLE BY TITLE =================
     public static void removeArticle(Context context, SavedArticle articleToRemove) {
-        // Get the current saved list
         ArrayList<SavedArticle> savedList = getSavedArticles(context);
 
-        // Remove the article that matches the title
-        // (can be improved to use unique ID if available)
+        // Remove article matching title (can be improved to use unique ID)
         savedList.removeIf(article -> article.getTitle().equals(articleToRemove.getTitle()));
 
-        // Save the updated list back
         saveList(context, savedList);
     }
 
-    // ============ SAVE FULL LIST (PRIVATE HELPER METHOD) ============
+    // ================= PRIVATE HELPER: SAVE FULL LIST =================
     private static void saveList(Context context, ArrayList<SavedArticle> list) {
-        // Get SharedPreferences editor to write changes
         SharedPreferences.Editor editor = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).edit();
 
-        // Convert the list to a JSON string
+        // Convert list to JSON
         String json = new Gson().toJson(list);
 
-        // Save the JSON string under the key
         editor.putString(KEY_LIST, json);
-
-        // Apply changes asynchronously
-        editor.apply();
+        editor.apply(); // save asynchronously
     }
 }

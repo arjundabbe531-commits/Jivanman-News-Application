@@ -63,7 +63,7 @@
                 android:contentDescription="Profile Image" />
 
             <ImageView
-                android:id="@+id/btn_camera"
+                android:id="@+id/btnCamera"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:src="@drawable/baseline_photo_camera_24"
@@ -91,7 +91,7 @@
             app:boxCornerRadiusBottomEnd="12dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_name"
+                android:id="@+id/editName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="नाव"
@@ -119,7 +119,7 @@
             app:boxCornerRadiusBottomEnd="12dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_mobile"
+                android:id="@+id/editMobile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="मोबाईल क्रमांक"
@@ -146,7 +146,7 @@
             app:boxCornerRadiusBottomEnd="12dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_email"
+                android:id="@+id/editEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="ईमेल"
